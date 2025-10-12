@@ -1,0 +1,48 @@
+Join us as we break down the WhatsApp integration logic in the Ansari backend, covering setup, endpoints, and local testing tips for developers.
+
+IMPORTANT NOTE 1: Thoroughly check the chapters below; they usually contain the most up-to-date information (as some info in the video itself may get outdated).
+
+IMPORTANT NOTE 2: As of October 2025, this logic is largely the same, but have been moved to a dedicated repo.
+
+▬▬ ⏱️ Timestamps  ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+00:00 Introduction and Apologies :/
+00:32 Understanding Meta's API and Initial Setup
+00:49 Overview of WhatsApp Business Integration
+01:39 Endpoints and Presenters Explained
+02:52 Callback URL and Verification Webhook
+04:28 Testing Environment Setup
+06:03 Using Zrok for Local Testing
+16:39 Handling Incoming WhatsApp Messages
+20:57 Conclusion and Next Steps
+
+▬▬ ℹ️ Details  ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+Assalamualaikum and welcome to our next video in the Ansari backend V2.0 series! In this session, we’ll walk you through the WhatsApp integration logic—how we connect our backend to Meta’s API, set up endpoints, and enable local testing for smooth development.
+
+What you’ll learn in this video:
+
+• The essentials of connecting FastAPI to WhatsApp via Meta’s Graph API
+• How to configure callback URLs for both production and local environments
+• Using Zrok for secure local webhook testing
+• Handling incoming WhatsApp messages and understanding endpoint logic
+
+If you have any questions, feedback, or suggestions for future videos, leave a comment below! :] 🙌
+
+▬▬ 🔗 Relevant Links  ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+• Ansari Backend V2.0 Repo (till the time of recording): https://github.com/ansari-project/ansari-backend/tree/6a88b5035463eee08cf863575b208f7248524a18
+• Ansari Chat: https://ansari.chat/
+• Ansari WhatsApp: https://wa.me/16506563971
+• Ansari Android App: https://play.google.com/store/apps/details?id=chat.ansari.app&hl=en
+• Ansari iOS App: https://apps.apple.com/us/app/ansari-chat/id6743072108
+• The WhatsApp-related comments in the .env.example file: https://github.com/ansari-project/ansari-backend/blob/6a88b5035463eee08cf863575b208f7248524a18/.env.example#L24
+
+▬▬ 🗣️ Content Creation Details ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+• This video is part of the Ansari V2.0 Backend series: https://www.youtube.com/playlist?list=PLNVULOJciLkTEbs8t4bEEIgEbxIQnK9VE
+• Details and assets related to the creation of this series: https://github.com/OdyAsh/ansari-docs/tree/main/docs/recordings/ansari_backend_v_2_0
+
+▬▬ 🤝 Connect with us  ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+• Email: feedback@ansari.chat

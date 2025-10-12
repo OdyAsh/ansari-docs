@@ -1,0 +1,46 @@
+Get a practical, high-level walkthrough of the evolving Ansari database—covering message logging, data models, and general coding tips for developers.
+
+IMPORTANT NOTE: Thoroughly check the chapters below; they usually contain the most up-to-date information (as some info in the video itself may get outdated).
+
+▬▬ ⏱️ Timestamps  ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+00:00 Introduction and Overview
+00:28 MessageLogger and Database Structure
+01:00 Handling Multiple Message Sources
+03:09 Refactoring and Future Changes
+04:14 Message History and Retrieval
+13:06 Practical Python Tips
+19:26 GitHub Student Developer Pack
+21:54 GitLens and Commit Messages
+24:13 Conclusion and Final Thoughts
+
+▬▬ ℹ️ Details  ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+Assalamualaikum and welcome to our next (and probably final!) video in the Ansari backend V2.0 series. In this session, we’ll dive into the evolving logic of the Ansari database, giving you a high-level overview of how messages are logged, stored, and retrieved in the backend.
+
+What you’ll learn in this video:
+
+• How the Ansari DB structures and manages user, thread, and message data
+• The logic behind message logging and handling multiple data sources
+• Practical coding tips for navigating and refactoring backend database code
+
+If you have any questions, feedback, or suggestions for future videos, leave a comment below! :] 🙌
+
+▬▬ 🔗 Relevant Links  ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+• Ansari Backend V2.0 Repo (till the time of recording): https://github.com/ansari-project/ansari-backend/tree/6a88b5035463eee08cf863575b208f7248524a18
+• Ansari Chat: https://ansari.chat/
+• Ansari WhatsApp: https://wa.me/16506563971
+• Ansari Android App: https://play.google.com/store/apps/details?id=chat.ansari.app&hl=en
+• Ansari iOS App: https://apps.apple.com/us/app/ansari-chat/id6743072108
+• DBeaver Tool: https://dbeaver.io/
+• GitHub Student Developer Pack: https://education.github.com/pack
+
+▬▬ 🗣️ Content Creation Details ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+• This video is part of the Ansari V2.0 Backend series: https://www.youtube.com/playlist?list=PLNVULOJciLkTEbs8t4bEEIgEbxIQnK9VE
+• Details and assets related to the creation of this series: https://github.com/OdyAsh/ansari-docs/tree/main/docs/recordings/ansari_backend_v_2_0
+
+▬▬ 🤝 Connect with us  ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+• Email: feedback@ansari.chat

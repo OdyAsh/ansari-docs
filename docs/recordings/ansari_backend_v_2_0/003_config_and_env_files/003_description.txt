@@ -1,0 +1,45 @@
+A walkthrough of config.py and .env.example files in Ansari backend V2.0.
+
+IMPORTANT NOTE: Thoroughly check the chapters below; they usually contain the most up-to-date information (as some info in the video itself may get outdated).
+
+▬▬ ⏱️ Timestamps  ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+00:00 Introduction and Setup
+00:19 Exploring the Config File (config.py)
+01:09 Understanding FastAPI Settings (pydantic-settings)
+01:55 Environment Variables and .env File (.env.example)
+02:45 Loading and Using Configuration Values
+09:50 Debug Mode and Default Values
+12:40 Conclusion and Next Steps
+
+▬▬ ℹ️ Details  ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+Assalamualaikum and welcome to our next video in the Ansari backend V2.0 series! In this session, we’ll dive deep into configuration and environment files, showing you how to manage settings and secrets effectively in your FastAPI projects.
+
+What you’ll learn in this video:
+
+• The role of config files and environment variables in backend development
+• How to use .env files to securely manage sensitive information
+• Understanding precedence: how FastAPI (through pydantic-settings) loads and prioritizes configuration values
+• Best practices for structuring and documenting your config files
+• Tips for troubleshooting common configuration issues and avoiding pitfalls
+
+If you have any questions, feedback, or suggestions for future videos, leave a comment below! :] 🙌
+
+▬▬ 🔗 Relevant Links  ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+• Ansari Backend V2.0 Repo (till the time of recording): https://github.com/ansari-project/ansari-backend/tree/6a88b5035463eee08cf863575b208f7248524a18
+• Ansari Chat: https://ansari.chat/
+• Ansari WhatsApp: https://wa.me/16506563971
+• Ansari Android App: https://play.google.com/store/apps/details?id=chat.ansari.app&hl=en
+• Ansari iOS App: https://apps.apple.com/us/app/ansari-chat/id6743072108
+• Understand Pydantic Settings: https://medium.com/@kishanbabariya101/episode-15-pydantic-settings-and-extra-types-9f47d14d0c77
+
+▬▬ 🗣️ Content Creation Details ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+• This video is part of the Ansari V2.0 Backend series: https://www.youtube.com/playlist?list=PLNVULOJciLkTEbs8t4bEEIgEbxIQnK9VE
+• Details and assets related to the creation of this series: https://github.com/OdyAsh/ansari-docs/tree/main/docs/recordings/ansari_backend_v_2_0
+
+▬▬ 🤝 Connect with us  ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+• Email: feedback@ansari.chat

@@ -1,0 +1,55 @@
+This is a continuation of how the LLM operates in "ansari.py", where we are covering several functions of the Ansari class in detail.
+
+IMPORTANT NOTE 1: Thoroughly check the chapters below; they usually contain the most up-to-date information (as some info in the video itself may get outdated).
+
+IMPORTANT NOTE 2: Even though the general idea of how we utilize LLMs and tools is the same, the codebase has significantly changed since the recording of this video, so consider the implementation details to be deprecated.
+
+▬▬ ⏱️ Timestamps  ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+00:00 Intro to process_one_round()
+00:44 Understanding Lite LLM
+03:40 Setting Up Lite LLM
+04:51 Handling API Keys
+10:57 Processing and Yielding Response Chunks
+14:36 Understanding tool_calls and Response Modes
+15:00 Example of tool_calls in Action
+15:28 Tool Call Syntax and Structure
+16:19 Handling Tool Calls in Loops
+18:24 Appending tool_calls to message_history
+19:15 Processing Tool Calls and Logging
+20:46 Defining and Using Tools
+21:41 Formatting Tool Arguments
+23:57 Mapping Tool Names to Instances
+25:23 Finalizing Tool Call Processing
+27:49 Conclusion and Next Steps
+
+▬▬ ℹ️ Details  ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+Assalamualaikum and welcome to another session in the Ansari backend V2.0 series! In this video, we’ll continue our exploration of the Ansari LLM backend, focusing on the process_one_round function, Lite LLM integration, and the mechanics of tool calls and message history.
+
+What you’ll learn in this video:
+
+• How the process_one_round method orchestrates message handling and response streaming
+• The role of Lite LLM in standardizing API calls across multiple providers
+• How API keys are managed for different LLMs
+• The structure and flow of tool calls, including argument formatting and result logging
+• How message history is updated and responses are saved
+
+If you have any questions, feedback, or suggestions for future videos, leave a comment below! :] 🙌
+
+▬▬ 🔗 Relevant Links  ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+• Ansari Backend V2.0 Repo (till the time of recording): https://github.com/ansari-project/ansari-backend/tree/6a88b5035463eee08cf863575b208f7248524a18
+• Ansari Chat: https://ansari.chat/
+• Ansari WhatsApp: https://wa.me/16506563971
+• Ansari Android App: https://play.google.com/store/apps/details?id=chat.ansari.app&hl=en
+• Ansari iOS App: https://apps.apple.com/us/app/ansari-chat/id6743072108
+
+▬▬ 🗣️ Content Creation Details ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+• This video is part of the Ansari V2.0 Backend series: https://www.youtube.com/playlist?list=PLNVULOJciLkTEbs8t4bEEIgEbxIQnK9VE
+• Details and assets related to the creation of this series: https://github.com/OdyAsh/ansari-docs/tree/main/docs/recordings/ansari_backend_v_2_0
+
+▬▬ 🤝 Connect with us  ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+• Email: feedback@ansari.chat

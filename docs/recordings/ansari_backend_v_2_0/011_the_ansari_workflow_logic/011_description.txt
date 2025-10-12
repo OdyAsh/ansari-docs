@@ -1,0 +1,45 @@
+Discover how the "new" ansari_workflow.py empowers developers to take control of tool logic and streamline backend processes in Ansari backend.
+
+IMPORTANT NOTE 1: Thoroughly check the chapters below; they usually contain the most up-to-date information (as some info in the video itself may get outdated).
+
+IMPORTANT NOTE 2: Even though the general idea of how we utilize LLMs and tools is the same, the codebase has significantly changed since the recording of this video, so consider the implementation details to be deprecated.
+
+▬▬ ⏱️ Timestamps  ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+0:00 Introduction to Ansari Workflow
+00:30 Overview of Ansari Workflow 3.0
+01:00 Modular Workflow and Tool Usage
+02:08 Navigating the Codebase
+02:38 Defining Workflow Steps
+03:15 API Endpoints and Workflow Execution
+05:25 Tool Responsibility on User Instead of Model (Unlike ansari.py)
+08:16 Conclusion and Further Reading
+
+▬▬ ℹ️ Details  ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+Assalamualaikum and welcome to our next video in the Ansari backend V2.0 series! In this session, we’ll dive into the core logic of the Ansari workflow, showing how tool selection and workflow steps are managed directly by developers for greater control and clarity.
+
+What you’ll learn in this video:
+
+• How the Ansari workflow structure shifts tool responsibility from the LLM to explicit developer control
+• The process of defining and executing modular workflow steps
+• Practical strategies for navigating and understanding the Ansari codebase
+
+If you have any questions, feedback, or suggestions for future videos, leave a comment below! :] 🙌
+
+▬▬ 🔗 Relevant Links  ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+• Ansari Backend V2.0 Repo (till the time of recording): https://github.com/ansari-project/ansari-backend/tree/6a88b5035463eee08cf863575b208f7248524a18
+• Ansari Chat: https://ansari.chat/
+• Ansari WhatsApp: https://wa.me/16506563971
+• Ansari Android App: https://play.google.com/store/apps/details?id=chat.ansari.app&hl=en
+• Ansari iOS App: https://apps.apple.com/us/app/ansari-chat/id6743072108
+
+▬▬ 🗣️ Content Creation Details ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+• This video is part of the Ansari V2.0 Backend series: https://www.youtube.com/playlist?list=PLNVULOJciLkTEbs8t4bEEIgEbxIQnK9VE
+• Details and assets related to the creation of this series: https://github.com/OdyAsh/ansari-docs/tree/main/docs/recordings/ansari_backend_v_2_0
+
+▬▬ 🤝 Connect with us  ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+• Email: feedback@ansari.chat

@@ -1,6 +1,8 @@
 An overview of the Ansari backend's code structure, key files, VSCode navigation tips, CI/CD practices, and development environment setup.
 
-IMPORTANT NOTE: Thoroughly check the chapters below; they usually contain the most up-to-date information (as some info in the video itself may get outdated).
+IMPORTANT NOTE 1: Thoroughly check the chapters below; they usually contain the most up-to-date information (as some info in the video itself may get outdated).
+
+IMPORTANT NOTE 2: As mentioned in the playlist's description (linked below), a lot of the content in this series is outdated, as it covers the codebase up until this commit: https://github.com/ansari-project/ansari-backend/tree/6a88b5035463eee08cf863575b208f7248524a18 . However, it's still uploaded as some info is still relevant.
 
 ▬▬ ⏱️ Timestamps  ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
 
@@ -43,7 +45,7 @@ If you have any questions, feedback, or suggestions for future videos, leave a c
 
 ▬▬ 🔗 Relevant Links  ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
 
-• Ansari Backend Repo: https://github.com/ansari-project/ansari-backend
+• Ansari Backend V2.0 Repo (till the time of recording): https://github.com/ansari-project/ansari-backend/tree/6a88b5035463eee08cf863575b208f7248524a18
 • Ansari Chat: https://ansari.chat/
 • Ansari WhatsApp: https://wa.me/16506563971
 • Ansari Android App: https://play.google.com/store/apps/details?id=chat.ansari.app&hl=en
@@ -53,7 +55,7 @@ If you have any questions, feedback, or suggestions for future videos, leave a c
 ▬▬ 🗣️ Content Creation Details ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
 
 • This video is part of the Ansari Backend series:  https://www.youtube.com/playlist?list=PLNVULOJciLkTEbs8t4bEEIgEbxIQnK9VE
-• Details and assets related to the creation of this series: https://github.com/OdyAsh/ansari-docs/tree/main/docs/recordings/ansari_backend
+• Details and assets related to the creation of this series: https://github.com/OdyAsh/ansari-docs/tree/main/docs/recordings/ansari_backend_v_2_0
 
 ▬▬ 🤝 Connect with us  ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
 

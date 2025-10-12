@@ -1,0 +1,44 @@
+Understanding Dependency Injection in FastAPI with Ansari backend V2.0 as a real-world example.
+
+
+IMPORTANT NOTE: Thoroughly check the chapters below; they usually contain the most up-to-date information (as some info in the video itself may get outdated).
+
+▬▬ ⏱️ Timestamps  ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+00:00 Understanding Dependency Injection 
+00:44 Example: Register User Function
+01:17 Validating CORS Function
+01:39 Handling Origins and Headers
+02:22 Additional Logic and Custom Headers
+03:05 Request Object and Dependency Injection
+04:27 Endpoints: Briefly Explained
+
+▬▬ ℹ️ Details  ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+Assalamualaikum and welcome to our next video in the Ansari backend V2.0 series! In this session, we’ll dive deep into Dependency Injection in FastAPI, explaining how it streamlines ansari's backend logic and enhances security.
+
+What you’ll learn in this video:
+
+• The fundamentals of Dependency Injection and how it works in FastAPI
+• How to use the Depends function to manage request validation and custom logic
+• How we validate CORS and handle request objects in our endpoints
+
+If you have any questions, feedback, or suggestions for future videos, leave a comment below! :] 🙌
+
+▬▬ 🔗 Relevant Links  ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+• Ansari Backend V2.0 Repo (till the time of recording): https://github.com/ansari-project/ansari-backend/tree/6a88b5035463eee08cf863575b208f7248524a18
+• Ansari Chat: https://ansari.chat/
+• Ansari WhatsApp: https://wa.me/16506563971
+• Ansari Android App: https://play.google.com/store/apps/details?id=chat.ansari.app&hl=en
+• Ansari iOS App: https://apps.apple.com/us/app/ansari-chat/id6743072108
+• Dependency Injection in FastAPI: https://fastapi.tiangolo.com/tutorial/dependencies/
+
+▬▬ 🗣️ Content Creation Details ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+• This video is part of the Ansari V2.0 Backend series: https://www.youtube.com/playlist?list=PLNVULOJciLkTEbs8t4bEEIgEbxIQnK9VE
+• Details and assets related to the creation of this series: https://github.com/OdyAsh/ansari-docs/tree/main/docs/recordings/ansari_backend_v_2_0
+
+▬▬ 🤝 Connect with us  ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+• Email: feedback@ansari.chat

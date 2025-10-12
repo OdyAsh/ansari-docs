@@ -1,4 +1,4 @@
-# Ansari Session 1 - Take 1
+# Ansari Backend V2.0 - 001 Project Structure Overview
 
 
 ## [00:00:00] Intro to Ansari Backend
@@ -26,7 +26,7 @@
 [00:01:43] And so we have the first folder called data. It doesn't have anything else but ma folder. And, data here is initially just, a folder where we get data specific to specific tasks, but since we, we rarely use this folder, it's only, it only [00:02:00] has this file from the and you'll see some inconsistencies in the structure here. So you can, after this meeting, you'll probably s ee a function that can go to utilities. As you see later, there is a folder code utilities, and you're probably right like, there can be some reordering done to the project to make it more to make it easier to understand. But this is the general structure for now. I'll probably pin this recording to a specific version of GitHub. This, if someone wants to [00:02:30] trace, what I'm doing here with the current, with the version that I'm using right now. So it doesn't have anything else, just this function. And we'll see what this function does. Later. I'm just going through the overall overview of of the tasks, functionalities of the full functionalities. 
 
 
-## [00:02:44] diskcache\_dir/
+## [00:02:44] diskcache_dir/
 
 [00:02:44] The, this cache directory is just for caching. You won't see that, like it's just, is there when you run the code, but, it's not really important. It's just internal code by the, this cash library. And so we'll go to that later. Uh, 
 
@@ -165,7 +165,7 @@
 [00:41:34] So you'll see, I believe, if I remember correctly, so we see MPI over here, even though I don't think we installed, yeah, we don't have PY here explicitly. If I, yeah. We don't wanna, we don't wanna make this list exhaustive. It's just for what we installed ourselves ourselves. So that means. Whenever we install a library in the future, if we are going to make any new feature, then we have to remember [00:42:00] to put this install library as it's written here, we put it in its corresponding place in the requirements text. We do that manually. Okay. And sort it, preferably sorted, won't matter. This are a quick shortcut for short for sorting control shift p and then you say, sort find ascending and it'll sort them ascending. I'm sorry I go off topic a lot of with these tips, but they are useful. 
 
 
-## [00:42:22] setup\_database.py
+## [00:42:22] setup_database.py
 
 [00:42:22] Now for the setup database file. Wow. We're back. We're back with this file again. So I explained this before, [00:42:30] but again, basically this is just, uh, for you to be used by you, the developer locally to create the meeting tables in your local database. Uh, or the missing database in general. If you don't have database instance, you can start with this. Okay. But to be honest, I didn't try it myself. Like I myself did. The old fashioned method that I showed before showed you before is just copy and pasting as you see here. Uh, I think there was just a remark if for some reason you wanna follow this method instead. Uh, I think it's just something that I [00:43:00] like a specific thing that you should comment. Yeah, here in in the in file four. In file four, which is this file, sorry, this file create type uh, if, okay, if you want to redo, database changes for example, you create a database instance and it has row in the table and you wanna wipe it all clean and truncate everything or remove it and then. Redefine the tables again for some reason. [00:43:30] Then just be careful that you should comment this in any later reruns, uh, because it'll give you an error. It'll say that it'll say that the type feedback class is already defined because it is defined. I don't know if I will be able to bring it here, but it is defined in another port.
 

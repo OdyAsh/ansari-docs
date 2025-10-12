@@ -1,0 +1,928 @@
+1
+00:00:00,049 --> 00:00:02,859
+here we're going to explain the Ansari workflow .py.
+
+2
+00:00:03,150 --> 00:00:05,520
+And I thought I'd explain this a little bit different.
+
+3
+00:00:05,960 --> 00:00:08,650
+I'll read this summary that I made when I skimmed through
+
+4
+00:00:08,650 --> 00:00:12,529
+the code, but instead of over preparing for this part of the
+
+5
+00:00:12,529 --> 00:00:17,379
+recording I'd rather actually explore the module and where
+
+6
+00:00:17,379 --> 00:00:20,049
+it's called and everything with you so that you can see
+
+7
+00:00:20,049 --> 00:00:22,540
+like a demonstration of how I navigate the code base and.
+
+8
+00:00:23,064 --> 00:00:24,894
+Maybe you can follow something similar
+
+9
+00:00:24,894 --> 00:00:26,814
+to what I'm doing here in the future.
+
+10
+00:00:26,814 --> 00:00:29,485
+If you see any other code that I didn't mention in this according.
+
+11
+00:00:30,055 --> 00:00:30,955
+Let's read together.
+
+12
+00:00:30,955 --> 00:00:32,070
+The file aims to redefine.
+
+13
+00:00:32,940 --> 00:00:34,585
+Ansari for version 3.0.
+
+14
+00:00:34,585 --> 00:00:39,125
+So this is a new version that we're aiming to, to deploy soon.
+
+15
+00:00:39,155 --> 00:00:41,595
+I don't know if it will if it will be
+
+16
+00:00:41,835 --> 00:00:43,635
+deployed when when this recording is out.
+
+17
+00:00:44,075 --> 00:00:47,115
+And in that version, we hope that Anso workflow
+
+18
+00:00:47,115 --> 00:00:49,325
+is the main driver behind our application.
+
+19
+00:00:49,855 --> 00:00:52,675
+Instead of the Ansari file, I'm not sure yet if
+
+20
+00:00:52,675 --> 00:00:55,665
+we're going to still use Ansari file or we'll
+
+21
+00:00:55,665 --> 00:00:57,895
+migrate completely to Ansari workflow .py.
+
+22
+00:00:57,965 --> 00:01:00,605
+So anyways, this is a new step that we're trying to make.
+
+23
+00:01:00,964 --> 00:01:04,515
+And so we want to apply this workflow which
+
+24
+00:01:04,515 --> 00:01:06,854
+is a modular workflow to process user queries.
+
+25
+00:01:06,854 --> 00:01:07,274
+Okay?
+
+26
+00:01:07,715 --> 00:01:11,135
+But since this is a workflow, the usage of tools,
+
+27
+00:01:11,135 --> 00:01:13,355
+remember the recordings that I made about tools.
+
+28
+00:01:13,410 --> 00:01:15,630
+Previously this logic now will not be
+
+29
+00:01:15,630 --> 00:01:17,999
+determined via l LMS inference anymore.
+
+30
+00:01:18,149 --> 00:01:21,210
+So if you remember, I said that the LLM is the one that decides
+
+31
+00:01:21,359 --> 00:01:24,960
+whether the U user query requires a tool response or not.
+
+32
+00:01:25,470 --> 00:01:28,620
+And so this determination won't be based
+
+33
+00:01:28,620 --> 00:01:31,290
+on the LLM anymore, at least in this part.
+
+34
+00:01:31,690 --> 00:01:32,620
+Ansari .py.
+
+35
+00:01:32,900 --> 00:01:34,220
+Instead, the workflow steps could
+
+36
+00:01:34,220 --> 00:01:35,690
+be defined to include tool usage.
+
+37
+00:01:36,020 --> 00:01:37,340
+For processing user queries.
+
+38
+00:01:37,460 --> 00:01:40,370
+So based on the type of user queries which we can determine
+
+39
+00:01:40,370 --> 00:01:44,970
+on our own, we will automatically insert a step for a tool
+
+40
+00:01:44,970 --> 00:01:48,390
+usage within the pipeline, within the workflow that we have
+
+41
+00:01:48,800 --> 00:01:51,990
+these workflow steps are defined via API endpoints in main_api.
+
+42
+00:01:52,009 --> 00:01:53,554
+We, we'll go to this part in a second.
+
+43
+00:01:54,879 --> 00:01:58,029
+Note, when I say note like this it is probably a technical note.
+
+44
+00:01:58,209 --> 00:01:58,539
+Okay.
+
+45
+00:01:59,029 --> 00:02:02,029
+Or a note regarding how to navigate things, how the code
+
+46
+00:02:02,029 --> 00:02:04,339
+works, et cetera, more than the business flow or what we're
+
+47
+00:02:04,339 --> 00:02:07,789
+trying to achieve in a general sense in the project itself.
+
+48
+00:02:08,219 --> 00:02:10,379
+In my opinion, a good way to navigate this file is to start
+
+49
+00:02:10,379 --> 00:02:14,249
+from the execute workflow method as it's made by main_api .py.
+
+50
+00:02:14,564 --> 00:02:16,904
+Entry point to ansari workflow recursively, see
+
+51
+00:02:16,904 --> 00:02:18,884
+which method scores, and then go back to this method.
+
+52
+00:02:18,884 --> 00:02:21,194
+So this is what I'll try to apply with you right now.
+
+53
+00:02:21,314 --> 00:02:23,914
+I actually don't remember what I'm going to see
+
+54
+00:02:24,214 --> 00:02:26,570
+because this, that recording is a a few days later.
+
+55
+00:02:26,959 --> 00:02:28,129
+So let's explore together.
+
+56
+00:02:28,619 --> 00:02:31,350
+We'll start navigating from the execute workflow, as I said.
+
+57
+00:02:32,864 --> 00:02:34,215
+Again you have multiple functions.
+
+58
+00:02:34,305 --> 00:02:35,355
+You multiple methods here.
+
+59
+00:02:35,655 --> 00:02:37,974
+So that's let's just sort here execute workflow.
+
+60
+00:02:38,034 --> 00:02:40,105
+This function handles the version three logic
+
+61
+00:02:40,254 --> 00:02:41,844
+idea is to have Ansari, execute workflow.
+
+62
+00:02:41,964 --> 00:02:43,194
+That can be a list of steps.
+
+63
+00:02:43,614 --> 00:02:43,974
+Okay.
+
+64
+00:02:44,224 --> 00:02:45,424
+So these are the allowed steps.
+
+65
+00:02:45,454 --> 00:02:47,715
+And they're based in on different tools that we have.
+
+66
+00:02:47,814 --> 00:02:49,584
+Steps, step name to function.
+
+67
+00:02:49,714 --> 00:02:51,244
+This is a dictionary which maps.
+
+68
+00:02:51,449 --> 00:02:54,949
+Each step name to the function, which will execute it.
+
+69
+00:02:55,459 --> 00:02:59,069
+And I believe some of these functions include tool usage.
+
+70
+00:02:59,849 --> 00:03:03,679
+I think we'll go to them promptly enough.
+
+71
+00:03:03,679 --> 00:03:06,129
+But but yeah, these are functions that we define here,
+
+72
+00:03:06,129 --> 00:03:10,169
+methods that dictates how to answer based on the step name.
+
+73
+00:03:10,529 --> 00:03:13,199
+Okay, let's just see an example of where this is mentioned.
+
+74
+00:03:13,199 --> 00:03:14,819
+Maybe it'll clear things up a little bit.
+
+75
+00:03:15,179 --> 00:03:18,569
+If you go to the main_api .py, we see here that
+
+76
+00:03:18,569 --> 00:03:22,799
+in an API endpoint called API version two A. Okay.
+
+77
+00:03:22,919 --> 00:03:24,449
+I'm not sure if version two remain like
+
+78
+00:03:24,449 --> 00:03:26,399
+this or B version three, I'm not sure yet.
+
+79
+00:03:26,399 --> 00:03:27,869
+Let's just wait out and see.
+
+80
+00:03:28,409 --> 00:03:33,289
+If a part of the front end requires this API endpoint or calls
+
+81
+00:03:33,289 --> 00:03:37,769
+this API endpoint we run this function, okay, which creates
+
+82
+00:03:37,769 --> 00:03:40,889
+Ansari workflow instance with a specific system prompt.
+
+83
+00:03:41,129 --> 00:03:43,629
+So this is a new system prompt, other than the
+
+84
+00:03:43,629 --> 00:03:45,879
+one that I told you about, the, hello, Ansari, I'm
+
+85
+00:03:45,879 --> 00:03:47,259
+an assistant to help you, et cetera, et cetera.
+
+86
+00:03:47,469 --> 00:03:49,269
+It's similar to that, but tailored
+
+87
+00:03:49,269 --> 00:03:52,349
+more to , requests regarding Ayahs.
+
+88
+00:03:52,459 --> 00:03:52,669
+Okay.
+
+89
+00:03:52,729 --> 00:03:53,149
+In Quran.
+
+90
+00:03:53,689 --> 00:03:56,944
+We define the instance and the Ayah ID We have a
+
+91
+00:03:57,484 --> 00:03:59,734
+way to calculate it here based on the surah on the.
+
+92
+00:03:59,789 --> 00:04:03,519
+And the I check if the answer is already stored in the database.
+
+93
+00:04:03,849 --> 00:04:04,329
+Okay.
+
+94
+00:04:04,389 --> 00:04:06,729
+All of this logic is the database, but here is the
+
+95
+00:04:06,729 --> 00:04:09,949
+part that interest interests me, the workflow steps.
+
+96
+00:04:10,009 --> 00:04:13,549
+So here, since I know I'm coming from the API endpoint
+
+97
+00:04:13,549 --> 00:04:16,309
+here, and I know the question or the thing that I
+
+98
+00:04:16,309 --> 00:04:19,819
+wanna answer is related to as then I know that I want
+
+99
+00:04:19,819 --> 00:04:22,729
+the workflow to be as following, we have a third step.
+
+100
+00:04:23,234 --> 00:04:23,624
+Okay.
+
+101
+00:04:24,324 --> 00:04:27,044
+Like a list of topples and the topple here consists
+
+102
+00:04:27,044 --> 00:04:29,924
+of the search step and what will pass to it.
+
+103
+00:04:30,074 --> 00:04:30,464
+Okay?
+
+104
+00:04:30,764 --> 00:04:33,185
+Query the query, which is a question coming from
+
+105
+00:04:33,185 --> 00:04:35,465
+the user, from the front end and the tool name.
+
+106
+00:04:35,465 --> 00:04:37,484
+So if you see here, we sp specifically
+
+107
+00:04:37,484 --> 00:04:38,669
+specify the tool name to, to.
+
+108
+00:04:39,540 --> 00:04:39,780
+Okay.
+
+109
+00:04:39,780 --> 00:04:43,500
+We didn't leave the logic to the LLM to infer anymore.
+
+110
+00:04:44,100 --> 00:04:44,400
+No.
+
+111
+00:04:44,450 --> 00:04:46,520
+We know here that we're coming from the front end from
+
+112
+00:04:46,520 --> 00:04:49,619
+a part of the interface where the user wants questions
+
+113
+00:04:49,619 --> 00:04:52,770
+related to is, and so we know that we'll use that tool.
+
+114
+00:04:52,979 --> 00:04:53,310
+Okay.
+
+115
+00:04:53,520 --> 00:04:54,710
+The tool of for example, search of
+
+116
+00:04:54,710 --> 00:04:55,969
+series, a new tool we're working on.
+
+117
+00:04:56,479 --> 00:04:59,199
+And so yeah we'll send that to him here because now we know.
+
+118
+00:04:59,554 --> 00:05:00,664
+What the type of question is.
+
+119
+00:05:01,114 --> 00:05:02,494
+And then the metadata filter.
+
+120
+00:05:02,554 --> 00:05:02,974
+Okay.
+
+121
+00:05:03,065 --> 00:05:06,055
+All of that will be required by the Ansari workflow agent.
+
+122
+00:05:06,535 --> 00:05:09,895
+This is a step of searching and then the to generate
+
+123
+00:05:09,895 --> 00:05:12,975
+query, we take that input again from the user.
+
+124
+00:05:13,815 --> 00:05:16,595
+And these parameters are other parameters that the that
+
+125
+00:05:16,595 --> 00:05:19,145
+the equivalent functions that I'll show you in second need.
+
+126
+00:05:19,325 --> 00:05:19,655
+Okay.
+
+127
+00:05:20,105 --> 00:05:22,135
+After we do these workflow steps,
+
+128
+00:05:22,165 --> 00:05:24,045
+we execute what have we define them?
+
+129
+00:05:24,045 --> 00:05:25,275
+We execute them here.
+
+130
+00:05:25,425 --> 00:05:25,665
+Okay?
+
+131
+00:05:25,845 --> 00:05:28,375
+So again the main thing that I want you to take from
+
+132
+00:05:28,375 --> 00:05:30,605
+this, because I'm not going into details with each
+
+133
+00:05:30,655 --> 00:05:34,525
+line of code here, is that we migrated the logic, the
+
+134
+00:05:34,555 --> 00:05:38,975
+responsibility of deciding the tool to be used from the LLM.
+
+135
+00:05:39,400 --> 00:05:42,170
+To infer it we migrated that responsibility to us.
+
+136
+00:05:42,260 --> 00:05:42,530
+Okay?
+
+137
+00:05:42,530 --> 00:05:45,980
+To the developers who put in the who know that here we
+
+138
+00:05:45,980 --> 00:05:48,770
+come from an endpoint that wants something related to ai.
+
+139
+00:05:48,920 --> 00:05:52,010
+So I know that the, that I wanna use a tool related to ai.
+
+140
+00:05:52,250 --> 00:05:54,440
+So the responsibility is now ours to choose a tool
+
+141
+00:05:54,440 --> 00:05:56,420
+based on where we're coming from the front end.
+
+142
+00:05:56,990 --> 00:05:57,350
+Okay?
+
+143
+00:05:57,690 --> 00:05:59,370
+This is another way to approach things.
+
+144
+00:05:59,430 --> 00:06:01,250
+And you can see here that these steps,
+
+145
+00:06:01,250 --> 00:06:02,720
+workflow steps here is best here.
+
+146
+00:06:03,320 --> 00:06:03,680
+Okay?
+
+147
+00:06:04,340 --> 00:06:07,220
+List of top of the one that I showed you in a minute.
+
+148
+00:06:07,700 --> 00:06:08,710
+And it's used here.
+
+149
+00:06:09,070 --> 00:06:10,750
+We take the step name and step parameter
+
+150
+00:06:11,080 --> 00:06:13,750
+and we pass that to the output dictionary.
+
+151
+00:06:13,930 --> 00:06:14,140
+Okay.
+
+152
+00:06:14,650 --> 00:06:15,510
+And okay.
+
+153
+00:06:15,510 --> 00:06:16,110
+One second.
+
+154
+00:06:16,110 --> 00:06:19,875
+The outputs here takes,
+
+155
+00:06:21,990 --> 00:06:24,120
+yeah, it calls it, this is a call.
+
+156
+00:06:24,540 --> 00:06:26,370
+And we take the step name to function.
+
+157
+00:06:27,075 --> 00:06:29,625
+Which is a dictionary we passed with the step name.
+
+158
+00:06:30,045 --> 00:06:30,405
+Okay.
+
+159
+00:06:30,465 --> 00:06:33,645
+Which is passed here in the main P. So if you remember here, for
+
+160
+00:06:33,645 --> 00:06:36,195
+example, search, we said that search here is a key, first key.
+
+161
+00:06:36,465 --> 00:06:39,595
+So in the first four loop iteration, we pass in search.
+
+162
+00:06:39,895 --> 00:06:42,505
+Okay so now this part that I'm highlighting,
+
+163
+00:06:42,775 --> 00:06:44,835
+we'll give us back the this function.
+
+164
+00:06:44,835 --> 00:06:45,195
+Okay?
+
+165
+00:06:45,585 --> 00:06:47,835
+So this is now a function, okay?
+
+166
+00:06:48,585 --> 00:06:50,655
+Is now this, and then.
+
+167
+00:06:51,195 --> 00:06:53,355
+Since we have a function, we will call it by doing
+
+168
+00:06:53,355 --> 00:06:55,895
+this parenthesis right here and say and test it.
+
+169
+00:06:55,895 --> 00:07:00,065
+Step pars and outputs, which are from the workflow steps here.
+
+170
+00:07:00,305 --> 00:07:03,125
+Okay, so step primes here is the, what
+
+171
+00:07:03,125 --> 00:07:05,765
+I'm getting here from the main_api code.
+
+172
+00:07:06,005 --> 00:07:06,245
+Okay?
+
+173
+00:07:07,035 --> 00:07:09,765
+And the outputs we're passing it because within that function.
+
+174
+00:07:10,380 --> 00:07:12,260
+We are we are using the current outputs.
+
+175
+00:07:12,355 --> 00:07:14,485
+So for example, the first time outputs would
+
+176
+00:07:14,485 --> 00:07:16,015
+be zero, because that's the first step.
+
+177
+00:07:16,244 --> 00:07:20,085
+So this function, which is this function, will give us a result.
+
+178
+00:07:20,774 --> 00:07:22,664
+This result will be appended to outputs.
+
+179
+00:07:23,384 --> 00:07:25,154
+And then in the next situation, we'll use the
+
+180
+00:07:25,154 --> 00:07:27,974
+outputs , which has the results of the first step.
+
+181
+00:07:28,154 --> 00:07:30,284
+We'll use it back as an input in the second step.
+
+182
+00:07:30,734 --> 00:07:31,094
+Okay.
+
+183
+00:07:31,514 --> 00:07:33,164
+So can you see the loop that's happening here?
+
+184
+00:07:33,194 --> 00:07:34,124
+Hopefully you can follow along.
+
+185
+00:07:34,514 --> 00:07:37,524
+And this  for loop will execute each of these functions based on
+
+186
+00:07:37,524 --> 00:07:40,764
+the parameters paused in the dictionary in here, in this part.
+
+187
+00:07:41,124 --> 00:07:41,424
+Okay?
+
+188
+00:07:41,874 --> 00:07:43,084
+And all of the outputs.
+
+189
+00:07:43,459 --> 00:07:45,589
+Of these steps will be returned to us.
+
+190
+00:07:45,649 --> 00:07:45,859
+Okay.
+
+191
+00:07:46,249 --> 00:07:49,699
+And then this output will be used, will be processed and used.
+
+192
+00:07:49,819 --> 00:07:52,270
+So taking the outputs we use, we're using
+
+193
+00:07:52,270 --> 00:07:54,384
+only the last one here as the, Ansari.
+
+194
+00:07:54,405 --> 00:07:55,274
+Answer the final answer.
+
+195
+00:07:55,274 --> 00:07:56,414
+And then returning that to the user.
+
+196
+00:07:56,744 --> 00:07:58,934
+So this is the main logic.
+
+197
+00:07:59,259 --> 00:08:02,209
+Of or the main idea of using the workflow agent.
+
+198
+00:08:02,570 --> 00:08:05,720
+The, is the specificities of each step here.
+
+199
+00:08:05,720 --> 00:08:07,100
+I'll leave that to you to search in.
+
+200
+00:08:07,550 --> 00:08:09,500
+And to be honest, the documentation on the prompting
+
+201
+00:08:09,500 --> 00:08:12,820
+here makes, it, makes this semi English like enough
+
+202
+00:08:12,820 --> 00:08:14,740
+for you to understand once you read through them.
+
+203
+00:08:15,220 --> 00:08:16,450
+And so I'll leave that to you.
+
+204
+00:08:16,720 --> 00:08:19,600
+This part was related to the Ansari workflow agent.
+
+205
+00:08:20,205 --> 00:08:21,615
+I don't think I need to explain it further.
+
+206
+00:08:22,045 --> 00:08:24,405
+Again, the most important lesson that you can take out from
+
+207
+00:08:24,405 --> 00:08:28,545
+this part is that the tool responsibility is now we specify
+
+208
+00:08:28,545 --> 00:08:31,505
+that explicitly instead of letting the LLM say it itself.
+
+209
+00:08:32,615 --> 00:08:32,885
+Okay.
+
+210
+00:08:32,945 --> 00:08:35,365
+Or at least let me search with you just
+
+211
+00:08:35,365 --> 00:08:37,805
+to make sure in the tool here Yeah.
+
+212
+00:08:37,805 --> 00:08:38,855
+We literally running it.
+
+213
+00:08:39,605 --> 00:08:40,415
+We're running the tool.
+
+214
+00:08:40,805 --> 00:08:41,315
+See, run.
+
+215
+00:08:41,825 --> 00:08:42,635
+Remember this function?
+
+216
+00:08:43,025 --> 00:08:44,845
+If you recall what I explained in the tools, if
+
+217
+00:08:44,845 --> 00:08:46,510
+I get, go back, for example, in search core on.
+
+218
+00:08:47,210 --> 00:08:47,780
+Where is it?
+
+219
+00:08:48,440 --> 00:08:49,940
+Search Core on?
+
+220
+00:08:50,630 --> 00:08:50,930
+Okay.
+
+221
+00:08:51,360 --> 00:08:52,770
+We have run as list and run a string.
+
+222
+00:08:52,770 --> 00:08:54,090
+I explained Run as list before.
+
+223
+00:08:54,240 --> 00:08:56,220
+That's what we used in ansari.py.
+
+224
+00:08:56,490 --> 00:08:58,650
+So apparently, because I'm seeing this with you right
+
+225
+00:08:58,650 --> 00:09:02,010
+now, we are using run as string in Ansari workflow here.
+
+226
+00:09:02,340 --> 00:09:02,670
+Okay.
+
+227
+00:09:02,940 --> 00:09:06,080
+So you'll follow along, you'll just read it one bit by bit.
+
+228
+00:09:06,800 --> 00:09:08,770
+And the intricacies of of this class, you'll
+
+229
+00:09:08,770 --> 00:09:10,240
+understand it once you read the Code base.
+
+230
+00:09:10,710 --> 00:09:11,070
+Okay.
+
+231
+00:09:11,130 --> 00:09:12,390
+So that was regarding the.
+
+232
+00:09:13,050 --> 00:09:16,355
+Ansari, workflow version 3.0.
+

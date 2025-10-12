@@ -1,0 +1,49 @@
+Extra details regarding version pinning, CI/CD basics, then explanation of the logger in Ansari backend
+
+IMPORTANT NOTE: Thoroughly check the chapters below; they usually contain the most up-to-date information (as some info in the video itself may get outdated).
+
+▬▬ ⏱️ Timestamps  ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+00:00 Version Pinning in Production (Deprecated; replaced with UV + pyproject.toml)
+01:31 Dry Run and Dependency Management (Deprecated)
+02:22 Compiling Requirements File (Deprecated)
+02:50 Understanding Direct and Implicit Dependencies (Deprecated)
+04:24 GitHub Actions Overview
+06:02 Handling GitHub Actions Errors
+09:39 Logger Configuration and Usage (Update: Loguru is used for whatsapp repo, but Ansari backend uses standard logging library)
+10:29 Logging Exceptions
+11:33 Conclusion and Final Thoughts
+
+▬▬ ℹ️ Details  ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+Assalamualaikum and welcome to our next video in the Ansari backend series! In this session, we’ll guide you through best practices for managing Python dependencies, setting up CI workflows, and implementing effective logging in your projects.
+
+What you’ll learn in this video:
+
+• Why version pinning is crucial for production and how to manage requirements files
+• How to use pip-compile for handling direct and implicit dependencies
+• Setting up and understanding GitHub Actions for CI, including testing and linting with Ruff
+• Troubleshooting common CI errors and interpreting logs
+• Configuring and using logging techniques for better debugging and maintainability
+
+If you have any questions, feedback, or suggestions for future videos, leave a comment below! :] 🙌
+
+▬▬ 🔗 Relevant Links  ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+• Ansari Backend V2.0 Repo (till the time of recording): https://github.com/ansari-project/ansari-backend/tree/6a88b5035463eee08cf863575b208f7248524a18
+• Ansari Chat: https://ansari.chat/
+• Ansari WhatsApp: https://wa.me/16506563971
+• Ansari Android App: https://play.google.com/store/apps/details?id=chat.ansari.app&hl=en
+• Ansari iOS App: https://apps.apple.com/us/app/ansari-chat/id6743072108
+• requirements.txt vs pyproject.toml: https://pydevtools.com/handbook/explanation/pyproject-vs-requirements/
+• Understand GitHub Actions Basics: https://medium.com/@dmosyan/understanding-the-basics-of-github-actions-7787993d300c
+• Loguru: https://loguru.readthedocs.io/en/stable/
+
+▬▬ 🗣️ Content Creation Details ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+• This video is part of the Ansari V2.0 Backend series: https://www.youtube.com/playlist?list=PLNVULOJciLkTEbs8t4bEEIgEbxIQnK9VE
+• Details and assets related to the creation of this series: https://github.com/OdyAsh/ansari-docs/tree/main/docs/recordings/ansari_backend_v_2_0
+
+▬▬ 🤝 Connect with us  ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+• Email: feedback@ansari.chat

@@ -1,0 +1,1688 @@
+1
+00:00:01,000 --> 00:00:01,210
+Okay.
+
+2
+00:00:01,210 --> 00:00:05,870
+So now continuing with the logic of main_api this file
+
+3
+00:00:05,870 --> 00:00:08,344
+has a lot of content let me just read with you the.
+
+4
+00:00:09,369 --> 00:00:12,669
+The overview that I've written here, this file aims
+
+5
+00:00:12,669 --> 00:00:15,099
+to provide a REST API server for the front end repo.
+
+6
+00:00:15,099 --> 00:00:15,819
+Found out this.
+
+7
+00:00:16,179 --> 00:00:19,109
+Again, as literally said we have a REST API
+
+8
+00:00:19,130 --> 00:00:21,860
+server here using first API Python library.
+
+9
+00:00:22,460 --> 00:00:25,960
+And it provides some endpoints, which we can see here,
+
+10
+00:00:26,290 --> 00:00:29,640
+outline if we collapse this and see these functions.
+
+11
+00:00:29,850 --> 00:00:31,259
+All of these are endpoints.
+
+12
+00:00:32,205 --> 00:00:35,345
+Endpoints and what basically an endpoint mean is
+
+13
+00:00:35,345 --> 00:00:38,015
+that for the front frontend code, for this frontend
+
+14
+00:00:38,015 --> 00:00:40,975
+repo, which displays the, I'm sorry, do chat website.
+
+15
+00:00:41,575 --> 00:00:44,725
+If we go to the repo, which I actually have, here
+
+16
+00:00:45,155 --> 00:00:47,865
+locally and then search for a specific endpoint.
+
+17
+00:00:47,865 --> 00:00:50,055
+For example, I search for users register.
+
+18
+00:00:50,535 --> 00:00:54,505
+I will get its location here and if we trace back this function,
+
+19
+00:00:54,505 --> 00:00:57,725
+I think we can trace it back to the part of the page or the
+
+20
+00:00:57,725 --> 00:01:01,455
+sign up page or the sign up button and the, or register button.
+
+21
+00:01:01,935 --> 00:01:04,845
+And pressing that button will run this logic.
+
+22
+00:01:05,245 --> 00:01:07,165
+Which we'll call this endpoint.
+
+23
+00:01:07,255 --> 00:01:08,955
+Okay, so this endpoint is basically
+
+24
+00:01:08,955 --> 00:01:11,905
+this function called register user.
+
+25
+00:01:12,235 --> 00:01:12,535
+Okay.
+
+26
+00:01:13,105 --> 00:01:15,835
+With this URLI searched for this part specifically
+
+27
+00:01:15,835 --> 00:01:18,715
+because the API version two is part of the base RL.
+
+28
+00:01:18,715 --> 00:01:22,745
+So if we, if you, if we copy this and control shift if
+
+29
+00:01:22,745 --> 00:01:25,110
+it here in the front end repo, you won't see anything.
+
+30
+00:01:25,800 --> 00:01:28,380
+So that's part of the trick that you normally
+
+31
+00:01:28,470 --> 00:01:32,080
+sometimes substring, take substrings of the original
+
+32
+00:01:32,080 --> 00:01:34,190
+string that you want to search for in the repo.
+
+33
+00:01:34,690 --> 00:01:38,270
+So, um, Yeah so this is a file which
+
+34
+00:01:38,270 --> 00:01:39,770
+talks to the front end, basically.
+
+35
+00:01:40,280 --> 00:01:43,780
+And this is a high level of the steps that
+
+36
+00:01:43,810 --> 00:01:46,080
+this function has, or not steps, but what this
+
+37
+00:01:46,080 --> 00:01:48,640
+file does imports necessary modules obviously.
+
+38
+00:01:49,000 --> 00:01:51,270
+Initialize FastAPI application and configure middleware.
+
+39
+00:01:51,330 --> 00:01:52,320
+What does this part mean?
+
+40
+00:01:52,320 --> 00:01:54,369
+It means this code right here.
+
+41
+00:01:54,609 --> 00:01:54,879
+Okay.
+
+42
+00:01:55,149 --> 00:02:00,015
+We initialize an app FastAPI instance in app, and this
+
+43
+00:02:00,015 --> 00:02:04,425
+app object, we bind to it certain decorators, which which
+
+44
+00:02:04,425 --> 00:02:07,275
+like assign certain characteristics to this instance.
+
+45
+00:02:07,305 --> 00:02:07,605
+Okay?
+
+46
+00:02:07,815 --> 00:02:09,645
+So for example, exception handler here.
+
+47
+00:02:10,020 --> 00:02:12,570
+We say that for this application that we instantiated
+
+48
+00:02:12,750 --> 00:02:14,910
+right now and that we're going to run in a few seconds,
+
+49
+00:02:15,210 --> 00:02:18,660
+we want to make its exception handler like this.
+
+50
+00:02:19,020 --> 00:02:19,320
+Okay?
+
+51
+00:02:19,690 --> 00:02:21,910
+You, we, you can see this link for details, but
+
+52
+00:02:21,910 --> 00:02:24,280
+essentially what this does is if there's an error that
+
+53
+00:02:24,280 --> 00:02:27,340
+isn't caught below, like a try, except block if an error.
+
+54
+00:02:27,850 --> 00:02:30,980
+Wasn't caught in, in this blocks and
+
+55
+00:02:30,980 --> 00:02:32,660
+got traced it to the main code here.
+
+56
+00:02:32,960 --> 00:02:35,180
+Then we make sure to run this function
+
+57
+00:02:35,180 --> 00:02:36,740
+initially, which basically does nothing.
+
+58
+00:02:36,950 --> 00:02:38,060
+It literally just logs.
+
+59
+00:02:38,060 --> 00:02:40,160
+It just logs the issue that that happened.
+
+60
+00:02:40,590 --> 00:02:43,380
+But other than that, it just returns the Jason response that it
+
+61
+00:02:43,380 --> 00:02:46,230
+would've returned otherwise anyways this is an example, another
+
+62
+00:02:46,230 --> 00:02:49,670
+example of using app here is is setting up the middleware
+
+63
+00:02:49,760 --> 00:02:52,750
+app, middleware saying the steering, the middleware features.
+
+64
+00:02:53,200 --> 00:02:53,710
+Or parameters.
+
+65
+00:02:53,760 --> 00:02:56,310
+So one thing to note here is that we are putting
+
+66
+00:02:56,310 --> 00:02:58,560
+the list of origins, if you recall the origins.
+
+67
+00:02:58,740 --> 00:03:01,950
+We got that from the configured by which got
+
+68
+00:03:01,950 --> 00:03:04,770
+that from the in example file, if you remember.
+
+69
+00:03:05,165 --> 00:03:06,815
+Here, remember that?
+
+70
+00:03:07,055 --> 00:03:09,240
+So we get that list and we say that if.
+
+71
+00:03:10,025 --> 00:03:12,585
+The request that comes to you in the
+
+72
+00:03:12,585 --> 00:03:14,265
+current endpoint that has been triggered.
+
+73
+00:03:14,415 --> 00:03:17,805
+If that request has a host or origin in that list
+
+74
+00:03:17,805 --> 00:03:19,785
+of origins, then allow it, otherwise don't allow it.
+
+75
+00:03:20,205 --> 00:03:23,045
+And we extend actually these origins using this
+
+76
+00:03:23,045 --> 00:03:25,705
+function or this function does, is is take the original
+
+77
+00:03:25,705 --> 00:03:27,955
+origins again from the settings from the config po,
+
+78
+00:03:28,285 --> 00:03:31,685
+but add to them some couple of more links with URLs.
+
+79
+00:03:31,685 --> 00:03:33,425
+That means based on certain.
+
+80
+00:03:33,855 --> 00:03:35,555
+Conditions, if we're in the bug modes, and
+
+81
+00:03:35,555 --> 00:03:38,205
+obviously you want to add this as well, et cetera.
+
+82
+00:03:38,715 --> 00:03:42,575
+Okay, so what the, this is what this function does and yeah.
+
+83
+00:03:43,265 --> 00:03:44,375
+This is regarding the middleware.
+
+84
+00:03:44,715 --> 00:03:47,035
+Other logic for using the app variable.
+
+85
+00:03:47,035 --> 00:03:50,430
+The fast p instance is the endpoint itself, so this is an
+
+86
+00:03:50,435 --> 00:03:53,785
+endpoint, all of these functional endpoints, so an endpoint
+
+87
+00:03:53,785 --> 00:03:57,055
+basically saying app dots because we want to assign this endpoint.
+
+88
+00:03:57,460 --> 00:04:00,220
+Register it with this this app specifically.
+
+89
+00:04:00,820 --> 00:04:01,030
+Okay.
+
+90
+00:04:01,090 --> 00:04:01,870
+This app instance.
+
+91
+00:04:01,960 --> 00:04:05,220
+So if you control, click here, it'll return us back to this part.
+
+92
+00:04:05,990 --> 00:04:06,230
+Okay?
+
+93
+00:04:06,470 --> 00:04:06,800
+Okay.
+
+94
+00:04:07,150 --> 00:04:08,920
+Now where do we actually run this?
+
+95
+00:04:08,980 --> 00:04:10,060
+Like, where do we run this app?
+
+96
+00:04:10,060 --> 00:04:11,700
+If you control F and then, and c
+
+97
+00:04:11,700 --> 00:04:14,440
+the sub string of it you will see.
+
+98
+00:04:16,330 --> 00:04:18,100
+You will see it, it run here.
+
+99
+00:04:18,610 --> 00:04:19,450
+What is this?
+
+100
+00:04:19,730 --> 00:04:22,070
+The main condition, let me explain it.
+
+101
+00:04:23,840 --> 00:04:24,020
+Okay.
+
+102
+00:04:24,020 --> 00:04:26,710
+So basically we're saying that literally I just wrote
+
+103
+00:04:26,710 --> 00:04:29,050
+it in the comments programmatically start UV server
+
+104
+00:04:29,050 --> 00:04:31,360
+while debugging for easier control, accessibility.
+
+105
+00:04:31,510 --> 00:04:32,740
+So if we are.
+
+106
+00:04:33,130 --> 00:04:34,120
+Running the code locally.
+
+107
+00:04:34,910 --> 00:04:37,280
+In other words like debugging and developing, then
+
+108
+00:04:37,280 --> 00:04:41,840
+we can simply write Python main main do by here,
+
+109
+00:04:42,190 --> 00:04:46,430
+main_api.py to run it and running it this way.
+
+110
+00:04:46,650 --> 00:04:49,280
+Will will, will make us be able to run to run
+
+111
+00:04:49,280 --> 00:04:52,670
+this condition because we, this will make the name
+
+112
+00:04:52,850 --> 00:04:55,130
+equal mean and so we'll be able to run this block.
+
+113
+00:04:55,610 --> 00:04:57,410
+Actually I should have, shouldn't have wrote this.
+
+114
+00:04:57,410 --> 00:05:00,290
+I should have wrote it because the current directory is here.
+
+115
+00:05:00,990 --> 00:05:02,700
+So I have to navigate to source and then, I'm sorry.
+
+116
+00:05:02,700 --> 00:05:03,900
+First, so I have to write source.
+
+117
+00:05:04,650 --> 00:05:06,270
+And there's a tip for you if you're
+
+118
+00:05:06,270 --> 00:05:09,070
+using partial, you can type SR. And then.
+
+119
+00:05:09,595 --> 00:05:13,675
+Tab, auto complete and then tab, pressing tab again
+
+120
+00:05:13,725 --> 00:05:15,495
+will auto complete with the folder that you want.
+
+121
+00:05:15,555 --> 00:05:16,575
+So we have here on, sorry.
+
+122
+00:05:16,575 --> 00:05:17,835
+And sorry, backend, whatever.
+
+123
+00:05:18,135 --> 00:05:19,305
+That's useless folder.
+
+124
+00:05:19,965 --> 00:05:21,255
+We continue to on, sorry.
+
+125
+00:05:21,255 --> 00:05:24,645
+And then if you come back here and tab, we get a list of files.
+
+126
+00:05:25,155 --> 00:05:26,085
+So that's pretty helpful.
+
+127
+00:05:26,085 --> 00:05:27,765
+So if I write AP and it continuous.
+
+128
+00:05:28,109 --> 00:05:30,900
+And then if I write main, it continues
+
+129
+00:05:30,900 --> 00:05:32,280
+with options, and then I run this file.
+
+130
+00:05:32,429 --> 00:05:34,300
+So that's a very cool neat trick.
+
+131
+00:05:34,539 --> 00:05:34,960
+Anyways.
+
+132
+00:05:35,330 --> 00:05:37,609
+Yeah, so basically this is one way to run it.
+
+133
+00:05:37,710 --> 00:05:40,449
+This will run this which will run this script UIC, to
+
+134
+00:05:40,449 --> 00:05:43,049
+run the file name without extension, which is main_api.
+
+135
+00:05:43,169 --> 00:05:43,994
+The point is the file.
+
+136
+00:05:44,544 --> 00:05:45,654
+That we're currently in.
+
+137
+00:05:45,984 --> 00:05:46,164
+Okay.
+
+138
+00:05:46,164 --> 00:05:49,774
+So it'll get just this part and the colon app.
+
+139
+00:05:49,834 --> 00:05:52,104
+Colon app means what's the name of the instance
+
+140
+00:05:52,104 --> 00:05:53,634
+that you're doing and we named it app Above.
+
+141
+00:05:53,724 --> 00:05:56,734
+So it's app and the info that you want to run in.
+
+142
+00:05:57,064 --> 00:05:57,844
+And that's it.
+
+143
+00:05:58,474 --> 00:05:58,774
+That's it.
+
+144
+00:05:58,774 --> 00:06:00,154
+It'll just run it here in the server.
+
+145
+00:06:00,364 --> 00:06:01,114
+That's one way to do it.
+
+146
+00:06:01,114 --> 00:06:03,904
+Another way to do it is just to, to use that command directly.
+
+147
+00:06:04,534 --> 00:06:04,984
+Okay.
+
+148
+00:06:05,224 --> 00:06:06,504
+In in here, in the terminal.
+
+149
+00:06:07,194 --> 00:06:07,344
+Okay.
+
+150
+00:06:07,404 --> 00:06:08,334
+That's another way to do that.
+
+151
+00:06:08,694 --> 00:06:09,274
+But I don't know.
+
+152
+00:06:09,274 --> 00:06:10,774
+I just prefer the Python method.
+
+153
+00:06:10,984 --> 00:06:13,714
+So I just wrote that if name equal main part.
+
+154
+00:06:13,944 --> 00:06:14,184
+Okay.
+
+155
+00:06:14,664 --> 00:06:16,344
+This is regarding this logic.
+
+156
+00:06:16,714 --> 00:06:19,294
+Here, these notes are regarding the WhatsApp logic that
+
+157
+00:06:19,294 --> 00:06:22,644
+I will come to that later, come back to this part later.
+
+158
+00:06:23,064 --> 00:06:26,904
+And I think this is the main points the custom exception handler.
+
+159
+00:06:26,904 --> 00:06:29,014
+I explained that database connection.
+
+160
+00:06:29,014 --> 00:06:29,164
+Yeah.
+
+161
+00:06:29,164 --> 00:06:30,419
+This is quite clear.
+
+162
+00:06:30,479 --> 00:06:32,819
+We just have, the database instance and an
+
+163
+00:06:32,819 --> 00:06:35,459
+sorry instance, which is model the agent and
+
+164
+00:06:35,459 --> 00:06:37,919
+the database connection to postgre SQ database.
+
+165
+00:06:37,979 --> 00:06:39,959
+And then we use that across the file.
+
+166
+00:06:40,289 --> 00:06:41,909
+If you see here, we use it multiple times to
+
+167
+00:06:41,909 --> 00:06:44,009
+register, to check if account exists, et cetera.
+
+168
+00:06:44,559 --> 00:06:46,959
+The same thing with the agent, with the Ansari agent.
+
+169
+00:06:46,959 --> 00:06:48,199
+We use it in multiple part.
+
+170
+00:06:48,299 --> 00:06:49,109
+Where do we use it?
+
+171
+00:06:49,859 --> 00:06:50,609
+Where do we use?
+
+172
+00:06:50,639 --> 00:06:50,849
+Okay.
+
+173
+00:06:50,849 --> 00:06:52,409
+Actually we don't use it.
+
+174
+00:06:53,219 --> 00:06:54,569
+Yeah, we use it in the API presenter.
+
+175
+00:06:54,569 --> 00:06:54,809
+Yeah.
+
+176
+00:06:55,169 --> 00:06:55,649
+Okay.
+
+177
+00:06:55,909 --> 00:06:57,109
+What does the API presenter do?
+
+178
+00:06:57,994 --> 00:06:59,854
+Here its logic is a little bit different
+
+179
+00:06:59,944 --> 00:07:01,704
+than than the other presenters.
+
+180
+00:07:02,034 --> 00:07:04,704
+A presenter logic is just to interface with the user
+
+181
+00:07:04,804 --> 00:07:07,414
+as intake input from him and then return back output.
+
+182
+00:07:07,924 --> 00:07:10,084
+But here presenting actually doesn't do that.
+
+183
+00:07:10,759 --> 00:07:12,229
+Why did we call it presenting then?
+
+184
+00:07:12,499 --> 00:07:15,269
+Just to remain with a, the convention.
+
+185
+00:07:16,109 --> 00:07:19,289
+But honestly, it should be named that for this specific case okay.
+
+186
+00:07:19,289 --> 00:07:20,099
+Then what does it do?
+
+187
+00:07:20,549 --> 00:07:21,149
+Literally nothing.
+
+188
+00:07:21,149 --> 00:07:23,899
+If you code the present here it's nothing we, it doesn't present.
+
+189
+00:07:24,289 --> 00:07:25,219
+Why does doesn it present?
+
+190
+00:07:25,399 --> 00:07:27,440
+Because technically, if you think about it, the
+
+191
+00:07:27,440 --> 00:07:29,450
+end points over here are the ones that present.
+
+192
+00:07:29,840 --> 00:07:32,240
+Because basically these are the things that are
+
+193
+00:07:32,240 --> 00:07:34,040
+the functions which interact with the front end re.
+
+194
+00:07:34,820 --> 00:07:37,620
+So when we get a request and it gets through one of these
+
+195
+00:07:37,620 --> 00:07:41,100
+functions, these are the functions which reads this request,
+
+196
+00:07:41,280 --> 00:07:43,560
+and these are the functions which reply back to the request.
+
+197
+00:07:43,620 --> 00:07:45,810
+So basically this is the interfacing layer with the user.
+
+198
+00:07:46,320 --> 00:07:47,640
+I mean in terms of backend at least.
+
+199
+00:07:48,190 --> 00:07:51,700
+So this is technically, all of this is technically the.
+
+200
+00:07:52,040 --> 00:07:54,560
+The present is how we are presenting to the user.
+
+201
+00:07:54,560 --> 00:07:55,640
+We're taking the input and presenting.
+
+202
+00:07:56,060 --> 00:07:58,670
+Okay, then what does the presenter do in this case?
+
+203
+00:07:59,030 --> 00:08:01,370
+Weirdly enough, I don't know why that choice was made,
+
+204
+00:08:01,370 --> 00:08:03,650
+but basically it just provides a complete function.
+
+205
+00:08:04,040 --> 00:08:05,330
+And what is the complete, what's the word?
+
+206
+00:08:05,330 --> 00:08:05,780
+Complete?
+
+207
+00:08:06,020 --> 00:08:07,160
+Imagine you have a chat with with
+
+208
+00:08:07,160 --> 00:08:08,600
+an, sorry, and you say, who are you?
+
+209
+00:08:08,600 --> 00:08:09,920
+And it says, I'm sorry, et cetera.
+
+210
+00:08:09,920 --> 00:08:10,370
+And then you.
+
+211
+00:08:10,895 --> 00:08:13,115
+You have now a history of messages, okay?
+
+212
+00:08:13,115 --> 00:08:14,225
+Between you and, I'm sorry.
+
+213
+00:08:14,675 --> 00:08:16,685
+And now this is called a history list of messages.
+
+214
+00:08:17,105 --> 00:08:19,805
+And now you send a new message and you say, okay, tell
+
+215
+00:08:19,805 --> 00:08:21,605
+me the pillars of a Islam, for example, and then you
+
+216
+00:08:21,605 --> 00:08:26,075
+want the agent to complete that chat and answer back.
+
+217
+00:08:26,135 --> 00:08:27,305
+So that's why we called it complete.
+
+218
+00:08:28,235 --> 00:08:31,435
+So what it does is take the messages and
+
+219
+00:08:31,435 --> 00:08:32,845
+which is which is actually a dictionary.
+
+220
+00:08:33,665 --> 00:08:35,705
+Which, which have two pieces of info, I believe,
+
+221
+00:08:35,735 --> 00:08:37,965
+if I recall correctly, the thread something related
+
+222
+00:08:37,965 --> 00:08:40,775
+to the thread name itself and the the messages.
+
+223
+00:08:41,205 --> 00:08:41,955
+What does the thread mean?
+
+224
+00:08:41,955 --> 00:08:43,355
+I'll come to back come to that later.
+
+225
+00:08:43,715 --> 00:08:46,145
+But uh, basically what we care about here
+
+226
+00:08:46,145 --> 00:08:48,165
+is the messages value, which is a list.
+
+227
+00:08:48,525 --> 00:08:48,885
+Okay?
+
+228
+00:08:49,335 --> 00:08:51,825
+So this value here, this here will be a list.
+
+229
+00:08:51,825 --> 00:08:53,295
+Even if you look at the replacement
+
+230
+00:08:53,385 --> 00:08:55,335
+history, you'll see that it's typing.
+
+231
+00:08:55,335 --> 00:08:56,715
+Here is a list of dictionaries.
+
+232
+00:08:57,075 --> 00:08:57,345
+Okay.
+
+233
+00:08:57,745 --> 00:08:59,845
+How is this structured or how is the user
+
+234
+00:08:59,845 --> 00:09:01,375
+message structure will come to that later?
+
+235
+00:09:01,615 --> 00:09:05,705
+Okay yeah, so it basically we take the history, okay,
+
+236
+00:09:05,705 --> 00:09:07,205
+that's currently appearing to the user in the ui.
+
+237
+00:09:07,895 --> 00:09:11,410
+And then we say, okay I want to, to stream the response.
+
+238
+00:09:11,470 --> 00:09:11,710
+Okay?
+
+239
+00:09:11,710 --> 00:09:12,610
+Why stream it?
+
+240
+00:09:13,000 --> 00:09:13,540
+Why stream it?
+
+241
+00:09:13,540 --> 00:09:15,790
+Because if you remember, we want
+
+242
+00:09:15,980 --> 00:09:17,510
+to return the words chunk by chunk.
+
+243
+00:09:17,510 --> 00:09:19,040
+If you remember the yielding logic.
+
+244
+00:09:19,475 --> 00:09:20,855
+The generator function that we said.
+
+245
+00:09:20,975 --> 00:09:22,385
+Even here, if you look at this, you'll see
+
+246
+00:09:22,385 --> 00:09:23,945
+that it returns the generator, if you remember.
+
+247
+00:09:24,275 --> 00:09:26,825
+We want to return that one by one as well.
+
+248
+00:09:27,095 --> 00:09:30,335
+The way to do it in Python here in the code is yield.
+
+249
+00:09:30,575 --> 00:09:32,675
+The way to do it through the server, through
+
+250
+00:09:32,735 --> 00:09:35,585
+a FastAPI to the front end repo is by writing,
+
+251
+00:09:35,585 --> 00:09:37,685
+is by returning a streaming response object.
+
+252
+00:09:37,925 --> 00:09:40,055
+Streaming response is from the FastAPI library.
+
+253
+00:09:40,205 --> 00:09:40,505
+Okay?
+
+254
+00:09:41,195 --> 00:09:42,785
+This is, this automatically says to fast ai.
+
+255
+00:09:42,935 --> 00:09:43,415
+Okay, wait.
+
+256
+00:09:43,415 --> 00:09:45,910
+I'm going to return a response to the ui, but we're not done yet.
+
+257
+00:09:46,745 --> 00:09:49,085
+I will keep streaming the response until there's
+
+258
+00:09:49,085 --> 00:09:52,745
+nothing else to respond from my part as a backend code.
+
+259
+00:09:53,195 --> 00:09:54,795
+So this is what this part means.
+
+260
+00:09:55,095 --> 00:09:56,265
+And so where do we call this?
+
+261
+00:09:56,265 --> 00:09:58,335
+We call this in the main a p, obviously.
+
+262
+00:09:58,845 --> 00:09:58,875
+Okay.
+
+263
+00:09:59,445 --> 00:10:01,375
+In a couple of functions here the main
+
+264
+00:10:01,375 --> 00:10:03,295
+one of them is ad message, we call it.
+
+265
+00:10:03,295 --> 00:10:05,425
+And what does ad message do basically?
+
+266
+00:10:05,525 --> 00:10:07,715
+It runs when we make a post request to this part.
+
+267
+00:10:08,105 --> 00:10:10,175
+So if you see in the, an sorry website,
+
+268
+00:10:10,355 --> 00:10:11,890
+you will see if you open up a chat.
+
+269
+00:10:12,460 --> 00:10:14,770
+You will see the chat and everything, and at the top you'll
+
+270
+00:10:14,770 --> 00:10:17,800
+see a URL, and at the end of the UL you'll see a long hash.
+
+271
+00:10:17,980 --> 00:10:19,120
+That hash is the thread id.
+
+272
+00:10:19,300 --> 00:10:22,240
+Okay, so basically when you type a message on, sorry, and you
+
+273
+00:10:22,240 --> 00:10:26,680
+press enter in the front end code implicitly or behind the scenes,
+
+274
+00:10:26,830 --> 00:10:31,900
+we run code in the front end, which calls this endpoint with the
+
+275
+00:10:31,900 --> 00:10:35,230
+thrill id, similar to the ID that you see at the top of the URL.
+
+276
+00:10:35,380 --> 00:10:35,950
+Sorry, chat.
+
+277
+00:10:36,130 --> 00:10:36,400
+Okay.
+
+278
+00:10:36,820 --> 00:10:38,560
+And so when we call it, we pass to it.
+
+279
+00:10:39,365 --> 00:10:40,715
+The details that you see in the ui.
+
+280
+00:10:41,315 --> 00:10:43,245
+So currently in the ui, you have who are
+
+281
+00:10:43,245 --> 00:10:44,775
+you and, sorry, replies and whatever.
+
+282
+00:10:45,375 --> 00:10:48,945
+And so all of that, when you press enter to enter a new
+
+283
+00:10:48,945 --> 00:10:52,015
+message to submit a new message to the backend, what gets
+
+284
+00:10:52,015 --> 00:10:55,825
+sent is not only this message, it's this message no, sorry.
+
+285
+00:10:55,885 --> 00:10:56,725
+It's only this message.
+
+286
+00:10:56,725 --> 00:10:57,025
+Yeah.
+
+287
+00:10:57,085 --> 00:10:58,825
+We the previous message that UI don't get
+
+288
+00:10:58,835 --> 00:11:01,145
+sent again, only this message gets sent.
+
+289
+00:11:01,445 --> 00:11:01,775
+Okay.
+
+290
+00:11:02,135 --> 00:11:04,055
+And you can see it here in the Quest
+
+291
+00:11:04,055 --> 00:11:05,705
+because it's an ad message request object.
+
+292
+00:11:05,705 --> 00:11:06,665
+So if you see that object.
+
+293
+00:11:06,995 --> 00:11:09,425
+You'll see that just have role and control will be always
+
+294
+00:11:09,425 --> 00:11:12,795
+be user because the person who sends the request is a user.
+
+295
+00:11:12,855 --> 00:11:13,935
+So it's always called user.
+
+296
+00:11:13,935 --> 00:11:16,965
+Even if you call to the front end code, I think you'll see user.
+
+297
+00:11:17,175 --> 00:11:19,035
+Yeah, I think user.
+
+298
+00:11:19,335 --> 00:11:21,670
+Maybe if I put a single string.
+
+299
+00:11:21,730 --> 00:11:21,940
+Yeah.
+
+300
+00:11:22,300 --> 00:11:22,600
+Here.
+
+301
+00:11:23,560 --> 00:11:23,980
+Okay.
+
+302
+00:11:24,650 --> 00:11:25,370
+Where is it?
+
+303
+00:11:25,970 --> 00:11:26,510
+Return.
+
+304
+00:11:27,485 --> 00:11:29,105
+User core types.
+
+305
+00:11:29,405 --> 00:11:29,975
+User role.
+
+306
+00:11:29,975 --> 00:11:30,665
+Yeah, user role.
+
+307
+00:11:30,785 --> 00:11:32,045
+So these are possible user rules.
+
+308
+00:11:32,045 --> 00:11:36,515
+And so we sent the user, but I just wanna see where is this used?
+
+309
+00:11:37,320 --> 00:11:37,710
+Username?
+
+310
+00:11:37,920 --> 00:11:38,250
+Yes.
+
+311
+00:11:38,280 --> 00:11:38,730
+Here it is.
+
+312
+00:11:39,090 --> 00:11:39,510
+Here it is.
+
+313
+00:11:39,510 --> 00:11:39,810
+Okay.
+
+314
+00:11:40,080 --> 00:11:42,700
+So we create the the thing that we're going
+
+315
+00:11:42,700 --> 00:11:45,470
+to send to I'm sorry to the backend repo.
+
+316
+00:11:45,680 --> 00:11:49,940
+And then we, that message we specify so we specified the
+
+317
+00:11:49,940 --> 00:11:52,850
+rule with the user rule, which is just a user swing as
+
+318
+00:11:52,850 --> 00:11:55,400
+you saw, and the content, which is the message that you
+
+319
+00:11:55,400 --> 00:11:58,970
+just typed in the website and hit enter that message.
+
+320
+00:11:59,000 --> 00:11:59,210
+Okay?
+
+321
+00:11:59,210 --> 00:11:59,780
+That's the content.
+
+322
+00:12:00,230 --> 00:12:00,560
+Okay.
+
+323
+00:12:00,840 --> 00:12:03,000
+So that's what's written here, has to be,
+
+324
+00:12:03,270 --> 00:12:04,740
+this has to abide with what's written here.
+
+325
+00:12:04,980 --> 00:12:05,220
+Okay?
+
+326
+00:12:05,880 --> 00:12:06,150
+Okay.
+
+327
+00:12:06,540 --> 00:12:07,950
+This is something as well.
+
+328
+00:12:09,030 --> 00:12:11,730
+Now, after we get this last message, we, internally
+
+329
+00:12:11,730 --> 00:12:13,485
+in the code here, if you read the messages one by one.
+
+330
+00:12:14,130 --> 00:12:15,420
+You would, you'll understand what's happening.
+
+331
+00:12:15,930 --> 00:12:18,540
+We get the thread history, IE we get the previous messages,
+
+332
+00:12:18,540 --> 00:12:21,390
+which appear in neuro I, we get it from database from our side.
+
+333
+00:12:21,660 --> 00:12:23,700
+And so now we have the complete history of messages.
+
+334
+00:12:23,790 --> 00:12:24,030
+Okay.
+
+335
+00:12:24,240 --> 00:12:27,570
+And now we add the last message that you just sent.
+
+336
+00:12:27,660 --> 00:12:29,820
+When you press enter, we add that to the thread history,
+
+337
+00:12:29,940 --> 00:12:33,060
+and then we get all that history and then send it to the
+
+338
+00:12:33,060 --> 00:12:36,280
+complete presenter over here just for the LLM to compete it.
+
+339
+00:12:36,650 --> 00:12:38,540
+And give us the response and the response,
+
+340
+00:12:38,570 --> 00:12:40,250
+the streaming response will return it here.
+
+341
+00:12:40,700 --> 00:12:41,060
+That's it.
+
+342
+00:12:41,780 --> 00:12:43,430
+Obviously this is misleading because technically
+
+343
+00:12:43,430 --> 00:12:44,930
+this really isn't a presenter anymore.
+
+344
+00:12:45,620 --> 00:12:47,480
+It technically presents the complete
+
+345
+00:12:47,480 --> 00:12:48,940
+answer of, I'm sorry, back to the ui.
+
+346
+00:12:49,450 --> 00:12:53,440
+Anyways so this is initially the logic and for the main
+
+347
+00:12:53,470 --> 00:12:56,100
+endpoints that we have here, for the main ones, for the core.
+
+348
+00:12:56,745 --> 00:12:59,865
+Functionalities that we have, you'll see me adding, detailed
+
+349
+00:12:59,865 --> 00:13:02,745
+the comments, explaining what each part of the code does.
+
+350
+00:13:02,895 --> 00:13:04,695
+So I won't go into details here to be honest.
+
+351
+00:13:05,015 --> 00:13:07,610
+But hopefully you get just a glance and a, an
+
+352
+00:13:07,610 --> 00:13:09,530
+overall idea of what's happening here in this file.
+
+353
+00:13:10,040 --> 00:13:11,030
+I think I'm done with it.
+
+354
+00:13:11,590 --> 00:13:13,150
+The tricky note is recording the word
+
+355
+00:13:13,210 --> 00:13:14,710
+presenting, and its different meaning here.
+
+356
+00:13:14,710 --> 00:13:16,850
+I already explained that FanoutCache,
+
+357
+00:13:16,870 --> 00:13:18,070
+to be honest, is not expert in caching.
+
+358
+00:13:18,070 --> 00:13:19,330
+So I'm gonna explain that.
+
+359
+00:13:19,615 --> 00:13:20,305
+'cause I really don't know it.
+
+360
+00:13:20,890 --> 00:13:23,185
+I don't know how exactly it, it optimizes
+
+361
+00:13:23,185 --> 00:13:25,345
+our memory usage additional routers.
+
+362
+00:13:25,495 --> 00:13:25,735
+Yeah.
+
+363
+00:13:25,775 --> 00:13:28,505
+This part is actually, this part is important.
+
+364
+00:13:30,005 --> 00:13:30,365
+Okay.
+
+365
+00:13:30,815 --> 00:13:34,415
+So in summary, we have these endpoints over here and we have
+
+366
+00:13:34,415 --> 00:13:39,035
+endpoints related to WhatsApp in the a file called Main WhatsApp.
+
+367
+00:13:39,965 --> 00:13:40,295
+Okay.
+
+368
+00:13:40,775 --> 00:13:42,785
+You will see them here get, or whatever.
+
+369
+00:13:42,905 --> 00:13:44,045
+So these are endpoints as well.
+
+370
+00:13:44,495 --> 00:13:44,765
+Okay?
+
+371
+00:13:44,770 --> 00:13:44,780
+But.
+
+372
+00:13:45,440 --> 00:13:48,170
+In the server, we always run the script of main_api de deploy.
+
+373
+00:13:48,710 --> 00:13:52,130
+Okay, so now the question becomes, I want to run the endpoints
+
+374
+00:13:52,130 --> 00:13:55,670
+here and I want to run the endpoints in main WhatsApp Deploy.
+
+375
+00:13:55,940 --> 00:13:56,630
+How do I do that?
+
+376
+00:13:56,810 --> 00:13:58,880
+Do I run two instances, two server instances?
+
+377
+00:13:58,985 --> 00:14:00,995
+I, that's not really a good option.
+
+378
+00:14:01,265 --> 00:14:04,895
+So what we do instead is in this server that we're
+
+379
+00:14:04,895 --> 00:14:07,445
+running at now in this app variable that we defined
+
+380
+00:14:07,445 --> 00:14:11,285
+above that we defined above here, we want to somehow.
+
+381
+00:14:12,095 --> 00:14:16,865
+Toy or bind the endpoints of WhatsApp's endpoints.
+
+382
+00:14:17,135 --> 00:14:19,385
+We want to bind that with the endpoints of the
+
+383
+00:14:19,385 --> 00:14:21,755
+instance that we have currently running here.
+
+384
+00:14:22,955 --> 00:14:23,675
+Sorry for my English.
+
+385
+00:14:24,525 --> 00:14:25,515
+So how do we do that?
+
+386
+00:14:25,575 --> 00:14:28,835
+How do we do, we make this binding process by
+
+387
+00:14:28,935 --> 00:14:31,065
+using, include router, include the WhatsApp router.
+
+388
+00:14:31,065 --> 00:14:33,165
+So if we control, click here, you'll see the
+
+389
+00:14:33,165 --> 00:14:34,995
+router that we define in main WhatsApp by.
+
+390
+00:14:35,115 --> 00:14:37,755
+And so this router, which I define here, when I, whenever I
+
+391
+00:14:37,755 --> 00:14:41,150
+create an end point, I now add that endpoint to the router
+
+392
+00:14:41,150 --> 00:14:44,690
+object I created, which is here, and now I call this,
+
+393
+00:14:45,440 --> 00:14:47,630
+okay, in, in this file, in WhatsApp, the router object.
+
+394
+00:14:47,690 --> 00:14:49,010
+And now I include it here as well.
+
+395
+00:14:49,475 --> 00:14:50,855
+So how, where does this appear?
+
+396
+00:14:50,855 --> 00:14:51,575
+It appears here.
+
+397
+00:14:52,235 --> 00:14:53,755
+I import it from another file from the
+
+398
+00:14:53,755 --> 00:14:55,075
+main WhatsApp file that I just showed you.
+
+399
+00:14:55,450 --> 00:14:57,430
+I import outr and name it as WhatsApp router.
+
+400
+00:14:58,030 --> 00:14:59,470
+So that's it.
+
+401
+00:14:59,500 --> 00:15:00,220
+That's the whole thing.
+
+402
+00:15:00,400 --> 00:15:03,880
+And now the API endpoints over there will be
+
+403
+00:15:03,880 --> 00:15:07,290
+visible, will be in that same FSBI instance
+
+404
+00:15:07,290 --> 00:15:08,850
+that we have running in the live environment.
+
+405
+00:15:09,030 --> 00:15:11,400
+That's why if you want to test WhatsApp, you
+
+406
+00:15:11,400 --> 00:15:14,590
+test it by actually running the the this script,
+
+407
+00:15:14,590 --> 00:15:17,070
+the main_api script by running Python main_api.
+
+408
+00:15:17,560 --> 00:15:22,285
+So you run this to test either the main_api or the WhatsApp API.
+
+409
+00:15:22,455 --> 00:15:22,725
+Okay.
+
+410
+00:15:23,775 --> 00:15:27,945
+So this is also something for you to understand and hopefully
+
+411
+00:15:28,005 --> 00:15:31,615
+it's not really hard to grasp handle CORS validation.
+
+412
+00:15:33,595 --> 00:15:33,865
+Yeah.
+
+413
+00:15:33,895 --> 00:15:34,225
+Okay.
+
+414
+00:15:34,720 --> 00:15:37,270
+I think I might leave that part.
+
+415
+00:15:38,535 --> 00:15:39,225
+To another.
+
+416
+00:15:39,555 --> 00:15:39,855
+Yeah.
+
+417
+00:15:39,945 --> 00:15:40,845
+I've leave that part later.
+
+418
+00:15:41,305 --> 00:15:42,835
+That's the last thing remaining in this file.
+
+419
+00:15:42,995 --> 00:15:45,245
+The defining various API endpoints, I don't think that's
+
+420
+00:15:45,245 --> 00:15:48,485
+really necessary um, used to the comments that I wrote.
+
+421
+00:15:48,665 --> 00:15:48,995
+So yeah.
+
+422
+00:15:48,995 --> 00:15:51,745
+I'll start next time from the CORS validation logic.
+

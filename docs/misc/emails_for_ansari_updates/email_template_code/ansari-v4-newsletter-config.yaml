@@ -1,0 +1,91 @@
+# Ansari V4 Newsletter Configuration
+# Edit this file to customize your newsletter content
+
+newsletter:
+  title: "Ansari Update - Development of V4"
+  greeting: "Assalamu alaikum wa rahmatullahi wa barakatuh!"
+  unsubscribe_text: "You are receiving this e-mail because you signed up to the Ansari updates mailing list, or because you have created an account on ansari.chat. Feel free to unsubscribe if you don't feel this is relevant."
+  unsubscribe_link: "https://chat.us21.list-manage.com/unsubscribe?u=6a15c921d5877515bdc472d7c&id=086ac2ad2d&t=b&e=%5BUNIQID%5D&c=46443b1900"
+
+# Logo and branding
+branding:
+  logo_url: "https://drive.google.com/thumbnail?id=1c_R39pQEorZ3w_1uC9Z8l2_O5YzDPso2&sz=w200-h200"
+  logo_alt: "Ansari Logo"
+
+# Highlight section - bullet points that appear at the top
+highlights:
+  title: "What's coming in Ansari V4:"
+  icon: "https://drive.google.com/thumbnail?id=1ctrBYOjrCyIWDPHFDiUuBthUm9cyI4QI"
+  highlights_list:
+    - "**Enhanced Learning Experience** with personalized guidance and interactive modes"
+    - "**File Upload Support** for analyzing PDFs, images, and Islamic texts"
+    - "**Multi-Model Integration** including Google Gemini for cost efficiency and faster responses"
+    - "**Progressive Response Mode** delivering quick answers with detailed follow-ups"
+    - "**Contemporary Islamic Issues** through curated web search capabilities"
+    - "**Join the Development** opportunities to contribute to the project"
+
+# Main content sections
+sections:
+  - type: "content"
+    title: "Ansari V4: Building the Future of Islamic AI Learning"
+    icon: "https://drive.google.com/thumbnail?id=1AukIIHwk44vaEhFTn--8VtGzl1JYRVg9"
+    paragraphs:
+      - "We're excited to share that development of Ansari V4 is underway! Based on your feedback and the evolving AI landscape, we're focused on creating a more personalized, engaging experience that keeps users returning for deeper Islamic learning."
+      - "While V3 established Ansari as a trusted Islamic AI assistant, V4 will transform how you interact with Islamic knowledge through advanced features that adapt to your learning style and needs."
+
+  - type: "features"
+    title: "Major User-Facing Improvements"
+    icon: "https://drive.google.com/thumbnail?id=1-If8SVPDgHrlUliLdpkfzzDEPEKdl3v-"
+    description: "Here are the key improvements you'll experience in Ansari V4:"
+    features:
+      - title: "Smart Learning Guidance"
+        description: "Personalized responses based on your madhab preferences, learning style, and previous conversations"
+      - title: "File Upload & Analysis"
+        description: "Upload PDFs, images, and Islamic texts for discussion and scholarly analysis with proper citations"
+      - title: "Lightning-Fast Responses"
+        description: "Progressive response mode delivers quick initial answers, then enhances with citations and detailed analysis"
+      - title: "Contemporary Issues Support"
+        description: "Curated web search for modern fatawa and current Islamic discussions from trusted sources"
+      - title: "Multiple AI Models"
+        description: "Choose between different AI models for optimal cost, speed, and response quality"
+      - title: "Interactive Learning Modes"
+        description: "Guided discovery mode that helps you find answers through Socratic questioning rather than direct answers"
+
+  - type: "content"
+    title: "Behind the Development"
+    icon: "https://drive.google.com/thumbnail?id=1a6iXO_t84QFwUIU6Kc9cpuxKQHbViBi2"
+    paragraphs:
+      - "V4 development focuses on solving user retention while leveraging cutting-edge AI capabilities. We're moving beyond simple Q&A to create an engaging, personalized learning companion."
+      - "Key technical improvements include migration to modern frameworks, enhanced conversation memory, intelligent content compression for longer sessions, and integration with emerging standards like Model Context Protocol (MCP) for seamless workflow integration."
+
+  - type: "feedback"
+    title: "Join the Ansari V4 Development Effort"
+    icon: "https://drive.google.com/thumbnail?id=1FiLz-iu0bjfqSs7YckahclBjCWFsWj8T"
+    description: "Ansari is an open-source project, and V4's success depends on community involvement. Whether you're a developer, Islamic scholar, designer, marketer, or simply passionate about Islamic education, there are many ways to contribute to this important work."
+    contact_intro: "Here's how you can help shape Ansari V4:"
+    contribution_opportunities:
+      - area: "**Development**"
+        description: "Frontend (React), backend (Python), mobile (React Native), infrastructure, and AI/ML expertise"
+      - area: "**Islamic Knowledge**"
+        description: "Source validation, citation review, madhab-specific guidance, and content accuracy verification"
+      - area: "**User Experience**"
+        description: "UI/UX design, user testing, accessibility improvements, and learning experience optimization"
+      - area: "**Community & Marketing**"
+        description: "Content creation, social media, community management, and outreach to Islamic organizations"
+      - area: "**Research & Testing**"
+        description: "Quality assurance, performance testing, and educational effectiveness research"
+    contact_methods:
+      - type: "email"
+        text: "Email: feedback@ansari.chat"
+        link: "mailto:feedback@ansari.chat"
+      - type: "github"
+        text: "GitHub: github.com/ansari-chat"
+        link: "https://github.com/ansari-chat"
+    closing_text: "Your contributions—whether code, knowledge, design, or advocacy—directly impact millions of Muslims worldwide seeking authentic Islamic guidance. Join us in building the future of Islamic AI education."
+
+# Footer content
+footer:
+  signature_text: "Remember us and Ansari in your dua!"
+  signature_icon: "https://drive.google.com/thumbnail?id=1Ms7IhnyemP_iP2j_wIwmH0EuuZuomO94"
+  signature_icon_alt: "Praying hands icon"
+  team_name: "The Ansari Team"

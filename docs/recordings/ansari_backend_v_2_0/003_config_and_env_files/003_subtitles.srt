@@ -1,0 +1,1256 @@
+1
+00:00:01,776 --> 00:00:02,316
+Hello?
+
+2
+00:00:02,316 --> 00:00:03,006
+Hello.
+
+3
+00:00:03,186 --> 00:00:07,056
+Okay, this is a continuation of the recordings.
+
+4
+00:00:07,206 --> 00:00:09,546
+I think I don't need to do this greeting each time
+
+5
+00:00:09,546 --> 00:00:11,526
+because we are going to concatenate everything together.
+
+6
+00:00:11,526 --> 00:00:12,356
+But bear with me.
+
+7
+00:00:13,016 --> 00:00:18,686
+Um, Now we have okay, now.
+
+8
+00:00:19,586 --> 00:00:24,686
+We will go to the config file and the n exemplifies.
+
+9
+00:00:25,316 --> 00:00:29,636
+So let's go through this bit by bit.
+
+10
+00:00:30,636 --> 00:00:32,926
+We are using a library called FastAPI.
+
+11
+00:00:33,306 --> 00:00:33,636
+Okay?
+
+12
+00:00:33,786 --> 00:00:35,166
+REST framework, okay.
+
+13
+00:00:35,296 --> 00:00:39,966
+web framework and to receive the requests from the front end ui.
+
+14
+00:00:40,536 --> 00:00:40,836
+Okay?
+
+15
+00:00:41,286 --> 00:00:45,116
+So, FastAPI has a lot of documentation and I suggest
+
+16
+00:00:45,126 --> 00:00:48,616
+seeing the main the main the official docs for it.
+
+17
+00:00:48,616 --> 00:00:49,726
+Official documentation for it.
+
+18
+00:00:50,236 --> 00:00:52,396
+It's really it's what is this?
+
+19
+00:00:54,196 --> 00:00:54,616
+Yeah, sorry.
+
+20
+00:00:54,916 --> 00:00:57,276
+It's really clean and I liked it.
+
+21
+00:00:57,846 --> 00:01:00,066
+And it's weird for someone to say that he likes
+
+22
+00:01:00,126 --> 00:01:02,766
+documentation and that he's having fun reading documentation.
+
+23
+00:01:02,766 --> 00:01:06,276
+But really the, the team there did a
+
+24
+00:01:06,276 --> 00:01:08,956
+fantastic job at documenting how it works.
+
+25
+00:01:09,036 --> 00:01:12,336
+And one of its features is uh, settings and uh,
+
+26
+00:01:12,966 --> 00:01:16,136
+settings here is is a class that is responsible
+
+27
+00:01:16,136 --> 00:01:20,716
+for taking different values from different places.
+
+28
+00:01:21,456 --> 00:01:22,056
+What do I mean by this?
+
+29
+00:01:23,066 --> 00:01:24,956
+Let me explain with an example.
+
+30
+00:01:25,406 --> 00:01:27,906
+We can run the server, the FastAPI server by running
+
+31
+00:01:27,906 --> 00:01:30,966
+a command here and then passing arguments, for example
+
+32
+00:01:31,336 --> 00:01:33,886
+an argument called debug mode and give it values.
+
+33
+00:01:33,946 --> 00:01:34,336
+Okay?
+
+34
+00:01:34,936 --> 00:01:35,356
+Now.
+
+35
+00:01:37,126 --> 00:01:39,606
+This is one place where we can get like
+
+36
+00:01:39,686 --> 00:01:41,426
+you, you, you wanna say it constant?
+
+37
+00:01:41,456 --> 00:01:41,696
+Okay.
+
+38
+00:01:41,696 --> 00:01:43,246
+You can say environment variables.
+
+39
+00:01:43,246 --> 00:01:45,596
+You can say like just configuration settings.
+
+40
+00:01:45,686 --> 00:01:45,896
+Okay.
+
+41
+00:01:45,896 --> 00:01:46,856
+Like configuration setting.
+
+42
+00:01:47,726 --> 00:01:48,836
+This is one place to get them.
+
+43
+00:01:49,076 --> 00:01:49,286
+Okay.
+
+44
+00:01:49,286 --> 00:01:49,916
+From the command line.
+
+45
+00:01:50,636 --> 00:01:52,136
+Terminal arguments.
+
+46
+00:01:52,526 --> 00:01:52,796
+Okay.
+
+47
+00:01:52,796 --> 00:01:54,546
+So this is this is what this means.
+
+48
+00:01:54,786 --> 00:01:55,086
+Okay.
+
+49
+00:01:55,446 --> 00:01:58,856
+And you can get it as well from, other places.
+
+50
+00:01:58,886 --> 00:02:01,766
+Let me show you an example that you're probably familiar with.
+
+51
+00:02:01,796 --> 00:02:02,906
+The end file.
+
+52
+00:02:03,356 --> 00:02:04,826
+I'm showing you an example of it.
+
+53
+00:02:05,226 --> 00:02:07,956
+So you can here set the keys that you want to be
+
+54
+00:02:07,956 --> 00:02:10,176
+read in the environment while the code is running.
+
+55
+00:02:10,386 --> 00:02:13,566
+So again, you see the bug mode here.
+
+56
+00:02:13,926 --> 00:02:14,166
+Okay?
+
+57
+00:02:14,766 --> 00:02:15,846
+So this is another place.
+
+58
+00:02:16,026 --> 00:02:17,436
+So there are multiple places.
+
+59
+00:02:17,436 --> 00:02:18,846
+I'm not going to explain all of them.
+
+60
+00:02:19,536 --> 00:02:21,576
+What we are interested in understanding is.
+
+61
+00:02:22,056 --> 00:02:24,296
+That there, there is precedence.
+
+62
+00:02:24,776 --> 00:02:27,206
+Precedence, meaning that if I set this here
+
+63
+00:02:27,206 --> 00:02:30,786
+and then set this in the n exemp file this will
+
+64
+00:02:30,786 --> 00:02:33,426
+take precedence over the n for example, file.
+
+65
+00:02:33,996 --> 00:02:37,116
+So meaning more priority, this will be prioritized.
+
+66
+00:02:37,236 --> 00:02:37,566
+Okay?
+
+67
+00:02:38,766 --> 00:02:41,136
+So this is another thing to take in mind.
+
+68
+00:02:41,556 --> 00:02:43,656
+What you need to understand from, from all of these
+
+69
+00:02:43,656 --> 00:02:45,576
+is that what we're currently using is the following.
+
+70
+00:02:45,576 --> 00:02:47,616
+We are using .env file.
+
+71
+00:02:47,616 --> 00:02:48,486
+.env file.
+
+72
+00:02:49,146 --> 00:02:51,006
+So we're loading the values from here,
+
+73
+00:02:51,606 --> 00:02:53,196
+from there into, into this class.
+
+74
+00:02:53,346 --> 00:02:55,146
+So you're going to see here a lot of keys.
+
+75
+00:02:55,206 --> 00:02:55,506
+Okay?
+
+76
+00:02:55,776 --> 00:02:59,676
+These keys, most of them are loaded from the dot end, for example.
+
+77
+00:02:59,676 --> 00:03:01,866
+So here you'll see debug mode.
+
+78
+00:03:02,886 --> 00:03:03,216
+Okay?
+
+79
+00:03:03,786 --> 00:03:04,836
+So debug mode here.
+
+80
+00:03:05,421 --> 00:03:09,051
+I, I got that from the digital example.
+
+81
+00:03:09,621 --> 00:03:09,951
+Okay.
+
+82
+00:03:10,611 --> 00:03:12,111
+It, this is done automatically.
+
+83
+00:03:12,111 --> 00:03:16,776
+So when you just run the script in main, a P point and, and the,
+
+84
+00:03:17,706 --> 00:03:22,801
+and the, and the Fast API server like runs in the background
+
+85
+00:03:22,801 --> 00:03:25,891
+and it and it sees this base settings from the identical class.
+
+86
+00:03:26,221 --> 00:03:27,361
+It runs that as well.
+
+87
+00:03:27,691 --> 00:03:30,981
+You see that, we see that it checks, it checks for these values.
+
+88
+00:03:30,981 --> 00:03:33,411
+So it see that, okay, debug mode and sees based
+
+89
+00:03:33,411 --> 00:03:35,691
+on the list above, where can I find this value.
+
+90
+00:03:36,051 --> 00:03:40,251
+And it goes through this list and it finds it in .env file
+
+91
+00:03:40,311 --> 00:03:43,151
+because it reads in the I think we, we passed it here.
+
+92
+00:03:43,151 --> 00:03:43,481
+Yeah.
+
+93
+00:03:43,601 --> 00:03:45,521
+The in file when we, we con fill it, settings,
+
+94
+00:03:45,551 --> 00:03:48,711
+config, we, we specified that it is found in here.
+
+95
+00:03:49,286 --> 00:03:50,876
+And this is respective to the root.
+
+96
+00:03:51,266 --> 00:03:53,231
+So that's why we put the file in the root.
+
+97
+00:03:53,231 --> 00:03:54,716
+The root file here will be in the root.
+
+98
+00:03:54,896 --> 00:03:55,196
+Okay?
+
+99
+00:03:55,706 --> 00:03:58,196
+So again, adult file is literally the same as
+
+100
+00:03:58,196 --> 00:04:01,046
+this, but with the actual values, secret values.
+
+101
+00:04:01,406 --> 00:04:04,556
+So it'll be similar to this, but it'll not have this export.
+
+102
+00:04:04,706 --> 00:04:05,036
+Okay.
+
+103
+00:04:05,396 --> 00:04:06,776
+So what does this export do?
+
+104
+00:04:07,496 --> 00:04:09,296
+Basically, there is another option.
+
+105
+00:04:09,296 --> 00:04:10,016
+This is option info.
+
+106
+00:04:10,416 --> 00:04:14,436
+You can you can run this as a script, okay.
+
+107
+00:04:14,896 --> 00:04:15,526
+In the terminal.
+
+108
+00:04:15,586 --> 00:04:19,336
+To, to take line by line as a command and run that.
+
+109
+00:04:19,546 --> 00:04:23,146
+So this is a command in Bash saying, export this key.
+
+110
+00:04:23,596 --> 00:04:25,846
+So it'll export this key to the environment
+
+111
+00:04:25,846 --> 00:04:28,196
+variables of the environment, okay?
+
+112
+00:04:28,196 --> 00:04:29,066
+That's currently running.
+
+113
+00:04:29,636 --> 00:04:31,676
+So if you decide to go with that path,
+
+114
+00:04:31,856 --> 00:04:34,736
+then you will be abiding by this rule.
+
+115
+00:04:35,356 --> 00:04:35,926
+Which one?
+
+116
+00:04:35,926 --> 00:04:36,376
+This rule?
+
+117
+00:04:36,376 --> 00:04:37,276
+The environment variables rule.
+
+118
+00:04:37,366 --> 00:04:37,666
+Okay.
+
+119
+00:04:38,036 --> 00:04:40,646
+So these are general environment variables that's available
+
+120
+00:04:40,886 --> 00:04:42,896
+and how can you see them while the code is running?
+
+121
+00:04:43,136 --> 00:04:48,161
+You can do something like this import os and then os environ.
+
+122
+00:04:48,761 --> 00:04:50,051
+This will be a dictionary, I believe.
+
+123
+00:04:50,141 --> 00:04:50,501
+Yes.
+
+124
+00:04:50,761 --> 00:04:52,951
+Containing all of the environments currently based.
+
+125
+00:04:53,311 --> 00:04:56,241
+So so, so, so.
+
+126
+00:04:56,436 --> 00:04:59,136
+Suppo, assuming that you decide to go with that other
+
+127
+00:04:59,136 --> 00:05:02,016
+path of running this script, this best script, and
+
+128
+00:05:02,016 --> 00:05:03,876
+running these commands one by one in the terminal.
+
+129
+00:05:04,266 --> 00:05:07,356
+Then you should see when you, when you run this, when, when
+
+130
+00:05:07,356 --> 00:05:10,026
+you print this, you should see normal environment variables
+
+131
+00:05:10,026 --> 00:05:11,916
+that are always there when you run any Python script.
+
+132
+00:05:12,246 --> 00:05:17,451
+And you should see as well the custom keys that you inserted here.
+
+133
+00:05:17,541 --> 00:05:17,841
+Okay?
+
+134
+00:05:18,261 --> 00:05:20,451
+So but we don't, we will not go through
+
+135
+00:05:20,451 --> 00:05:22,731
+that with that path, and instead.
+
+136
+00:05:23,361 --> 00:05:25,941
+Or I personally instead just take the
+
+137
+00:05:25,941 --> 00:05:27,531
+stuff here and put it in a dotenv file.
+
+138
+00:05:27,831 --> 00:05:30,411
+And when I do that, I remove the, the export because
+
+139
+00:05:30,411 --> 00:05:32,631
+in the dot file, you don't need the export prefix.
+
+140
+00:05:32,981 --> 00:05:36,731
+So and I believe you can put some anything on the side here.
+
+141
+00:05:37,181 --> 00:05:40,731
+So this, this is taken as well in the
+
+142
+00:05:40,731 --> 00:05:42,231
+normal dotenv file when it's read.
+
+143
+00:05:42,661 --> 00:05:44,971
+So it, it'll take this as a key and then
+
+144
+00:05:44,971 --> 00:05:46,471
+what is after the equal will be taken.
+
+145
+00:05:47,011 --> 00:05:47,311
+Okay.
+
+146
+00:05:47,896 --> 00:05:49,246
+That's what I understand.
+
+147
+00:05:49,246 --> 00:05:50,506
+I'm not sure if this is correct though or not
+
+148
+00:05:50,506 --> 00:05:52,546
+because I, I, I think I faced this issue before.
+
+149
+00:05:52,816 --> 00:05:55,066
+So you can put comments on the side like this here.
+
+150
+00:05:55,116 --> 00:05:58,596
+In the actual end file you have to put it if you are going to put
+
+151
+00:05:58,596 --> 00:06:01,956
+it, put it on top of it or below it, don't put it to the side.
+
+152
+00:06:02,286 --> 00:06:02,616
+Okay?
+
+153
+00:06:03,006 --> 00:06:05,856
+And another thing, this is this string is optional.
+
+154
+00:06:06,126 --> 00:06:09,456
+So for example, for example, when I say here
+
+155
+00:06:09,456 --> 00:06:14,076
+two, I can also, I can also write it at, at like
+
+156
+00:06:14,076 --> 00:06:15,996
+this, and it'll be read as a string as well.
+
+157
+00:06:16,326 --> 00:06:16,656
+Okay.
+
+158
+00:06:17,226 --> 00:06:19,296
+So, but we, we, we put it for clarity.
+
+159
+00:06:19,716 --> 00:06:21,696
+Because everything here, I, if I remember
+
+160
+00:06:21,696 --> 00:06:23,286
+correctly, is initially read as a string.
+
+161
+00:06:23,526 --> 00:06:23,796
+Okay?
+
+162
+00:06:23,796 --> 00:06:26,966
+So if you just use the grow traditional method of of,
+
+163
+00:06:26,966 --> 00:06:33,446
+from NV library, import load nv, and then you load n you
+
+164
+00:06:33,446 --> 00:06:36,216
+will see that and then you try to, to call, for example.
+
+165
+00:06:36,786 --> 00:06:41,936
+And then you try to call is the get good get in the bug mode.
+
+166
+00:06:42,956 --> 00:06:45,956
+It, this will return true string.
+
+167
+00:06:46,346 --> 00:06:47,756
+Like even if you put this as a true
+
+168
+00:06:47,756 --> 00:06:49,556
+without the, without the double strings.
+
+169
+00:06:50,006 --> 00:06:50,336
+Okay?
+
+170
+00:06:50,336 --> 00:06:52,526
+Even if you do it like this and you, and you
+
+171
+00:06:52,526 --> 00:06:54,596
+print this, it'll still be decoded as a string.
+
+172
+00:06:55,151 --> 00:06:57,551
+It'll still appear as a string because that's how it
+
+173
+00:06:57,551 --> 00:07:01,091
+internalizes the, the, the, the file, how this file gets read.
+
+174
+00:07:01,541 --> 00:07:03,851
+So this is something for you to, to, to,
+
+175
+00:07:03,941 --> 00:07:05,531
+so this is, it will be a string as well.
+
+176
+00:07:05,531 --> 00:07:06,641
+This one will be a string.
+
+177
+00:07:06,911 --> 00:07:09,041
+And then you, you can do, if you are going to get
+
+178
+00:07:09,041 --> 00:07:11,171
+this here, for example, you won, you won't need that.
+
+179
+00:07:11,171 --> 00:07:13,801
+But this just a for you to understand
+
+180
+00:07:14,201 --> 00:07:15,371
+and you get that as a variable.
+
+181
+00:07:16,191 --> 00:07:18,111
+Inval.
+
+182
+00:07:18,351 --> 00:07:19,821
+This will actually not be an inval.
+
+183
+00:07:19,821 --> 00:07:21,711
+This will be a, this will be a string.
+
+184
+00:07:22,386 --> 00:07:26,136
+And you'll have to do something like this to
+
+185
+00:07:26,136 --> 00:07:29,726
+convert it to a, an same thing with debug mode,
+
+186
+00:07:30,596 --> 00:07:34,626
+debug mode it'll return a string was true in it.
+
+187
+00:07:35,026 --> 00:07:38,296
+And then I think, I think if you, if you, if you
+
+188
+00:07:38,296 --> 00:07:40,456
+put this and, and here a string was true, it'll
+
+189
+00:07:40,456 --> 00:07:42,106
+be a true value, but I'm not sure about this.
+
+190
+00:07:42,166 --> 00:07:43,546
+I'm, yeah, I'm not sure.
+
+191
+00:07:45,586 --> 00:07:46,036
+Yeah.
+
+192
+00:07:46,621 --> 00:07:47,431
+No, it doesn't do that.
+
+193
+00:07:47,431 --> 00:07:48,631
+So apologies for this.
+
+194
+00:07:48,681 --> 00:07:51,171
+I thought it would apply the same logic, but apparently not.
+
+195
+00:07:51,171 --> 00:07:51,921
+But you get the idea.
+
+196
+00:07:52,101 --> 00:07:56,111
+Okay, so so this is something for you to be aware of.
+
+197
+00:07:56,471 --> 00:07:58,541
+Of how to get environment variables at
+
+198
+00:07:58,541 --> 00:08:01,001
+or configurations into the environment.
+
+199
+00:08:01,451 --> 00:08:01,781
+Okay.
+
+200
+00:08:01,781 --> 00:08:05,471
+If you want a description of what the use of each
+
+201
+00:08:05,501 --> 00:08:08,681
+configuration here is, then there are two approaches.
+
+202
+00:08:08,891 --> 00:08:12,041
+First, approach growth, control, shift F global searching here.
+
+203
+00:08:12,311 --> 00:08:13,961
+So for example, in here I can control shift
+
+204
+00:08:13,961 --> 00:08:16,001
+F and I can see what it got mentioned.
+
+205
+00:08:16,001 --> 00:08:18,971
+It got mentioned in, in all of these for example, let
+
+206
+00:08:18,971 --> 00:08:22,661
+me see here, main, so if we're in debug mode right now.
+
+207
+00:08:23,046 --> 00:08:24,576
+And this file is the main entry point.
+
+208
+00:08:24,756 --> 00:08:27,336
+Then we will run the UV server, et cetera.
+
+209
+00:08:27,456 --> 00:08:30,346
+So you can see the importance of each code, but not
+
+210
+00:08:30,406 --> 00:08:33,026
+all of the configurations here can be control shift.
+
+211
+00:08:33,086 --> 00:08:37,256
+If, for example, if we see the open I key and
+
+212
+00:08:37,256 --> 00:08:39,656
+we control shift, if that, you will see that
+
+213
+00:08:39,656 --> 00:08:41,816
+it isn't written explicitly in any other file.
+
+214
+00:08:41,906 --> 00:08:43,676
+Exclude over cd, GitHub action file.
+
+215
+00:08:43,976 --> 00:08:45,296
+It's not written in other files.
+
+216
+00:08:45,416 --> 00:08:45,686
+Okay?
+
+217
+00:08:46,016 --> 00:08:48,346
+So this is a problem because it'll make it.
+
+218
+00:08:48,936 --> 00:08:52,426
+Little bit more difficult to reduce its usage, but here
+
+219
+00:08:52,546 --> 00:08:55,366
+we can actually rely on the comments in the example.
+
+220
+00:08:55,726 --> 00:08:56,056
+Okay.
+
+221
+00:08:56,086 --> 00:08:59,856
+I, I try to, to put the comments rating how it gets used.
+
+222
+00:09:00,066 --> 00:09:01,566
+Obviously open I is a clear example.
+
+223
+00:09:01,636 --> 00:09:04,606
+Then, you know from the name that we are using
+
+224
+00:09:04,606 --> 00:09:06,796
+an LLM provider, which relies on open AI model.
+
+225
+00:09:06,976 --> 00:09:08,266
+So we use that key.
+
+226
+00:09:08,356 --> 00:09:09,466
+So this makes sense.
+
+227
+00:09:09,946 --> 00:09:10,246
+Okay.
+
+228
+00:09:10,696 --> 00:09:12,856
+But other things that really don't, don't make that much sense.
+
+229
+00:09:12,856 --> 00:09:14,326
+I I have comments like, for example, WhatsApp.
+
+230
+00:09:14,906 --> 00:09:15,416
+Keys here.
+
+231
+00:09:15,416 --> 00:09:16,346
+I have comments for that.
+
+232
+00:09:16,646 --> 00:09:16,916
+Okay.
+
+233
+00:09:17,336 --> 00:09:18,256
+And et cetera.
+
+234
+00:09:19,066 --> 00:09:22,066
+And there is a tricky note regarding
+
+235
+00:09:22,066 --> 00:09:23,566
+the OpenAI API key specifically.
+
+236
+00:09:23,566 --> 00:09:26,476
+I will, I'll get back to this when I explain later files.
+
+237
+00:09:26,836 --> 00:09:30,126
+So yeah, this is the part of configuration.
+
+238
+00:09:30,336 --> 00:09:32,436
+The, the remaining of the remainder of the code.
+
+239
+00:09:32,436 --> 00:09:35,146
+Here is just the default values that we put.
+
+240
+00:09:35,236 --> 00:09:37,096
+So if you remember here, there is a
+
+241
+00:09:37,096 --> 00:09:39,946
+precedence on how we take each, value.
+
+242
+00:09:40,126 --> 00:09:41,866
+Like if we have debug mode in here and in
+
+243
+00:09:41,866 --> 00:09:44,056
+the .env, we will, we'll prioritize this one.
+
+244
+00:09:44,476 --> 00:09:46,006
+So the last thing we'll prioritize.
+
+245
+00:09:46,456 --> 00:09:48,346
+Prioritize is a default field value in the
+
+246
+00:09:48,346 --> 00:09:50,176
+sittings model, which is something like that.
+
+247
+00:09:50,656 --> 00:09:55,616
+If we go back to debug model, debug mode, I mean you will
+
+248
+00:09:55,616 --> 00:09:58,166
+see the default value that means the following if we do not
+
+249
+00:09:58,646 --> 00:10:02,576
+have this variable called debug mode, all capital letters,
+
+250
+00:10:02,756 --> 00:10:05,156
+if we don't have that passed in arguments over here.
+
+251
+00:10:05,651 --> 00:10:10,341
+Or exported the via the export command From the example or in
+
+252
+00:10:10,341 --> 00:10:14,811
+file or in, in the remaining of the above, like five settings.
+
+253
+00:10:14,931 --> 00:10:17,011
+If you don't have all of that, then this
+
+254
+00:10:17,011 --> 00:10:18,511
+will be set to as a default value over here.
+
+255
+00:10:18,901 --> 00:10:19,111
+Okay.
+
+256
+00:10:19,111 --> 00:10:19,711
+Which is false.
+
+257
+00:10:20,251 --> 00:10:20,401
+Yeah.
+
+258
+00:10:20,911 --> 00:10:24,091
+So I believe, if I remember in the live environment that we
+
+259
+00:10:24,091 --> 00:10:28,901
+have in, in Heroku, we, we, we don't even specify that key.
+
+260
+00:10:29,496 --> 00:10:32,256
+Like that envi, that key in the environment over there, over hero.
+
+261
+00:10:32,676 --> 00:10:36,056
+So since it doesn't exist there it'll default to false.
+
+262
+00:10:36,326 --> 00:10:36,596
+Okay.
+
+263
+00:10:36,806 --> 00:10:39,446
+And so we, we won't be in debug mode in life.
+
+264
+00:10:39,506 --> 00:10:40,286
+And that makes sense.
+
+265
+00:10:40,496 --> 00:10:40,736
+Okay.
+
+266
+00:10:41,216 --> 00:10:43,936
+So this is something same same as logging level.
+
+267
+00:10:44,416 --> 00:10:45,106
+Logging level deal.
+
+268
+00:10:45,136 --> 00:10:47,466
+I believe in life we don't have this mentioned.
+
+269
+00:10:47,466 --> 00:10:50,466
+I think so it defaults to info, which makes sense, not debugging.
+
+270
+00:10:51,276 --> 00:10:51,726
+What else?
+
+271
+00:10:51,726 --> 00:10:54,666
+I wanna say, I think this is everything related to
+
+272
+00:10:54,716 --> 00:10:58,646
+to config feel very, this is when we, when we when
+
+273
+00:10:58,646 --> 00:11:01,076
+we want to get the key called origins specifically,
+
+274
+00:11:01,076 --> 00:11:05,616
+which is this one which is this one this function.
+
+275
+00:11:05,616 --> 00:11:07,656
+Make sure that we obtain it in a specific
+
+276
+00:11:07,656 --> 00:11:09,426
+format, which is a, which is a list.
+
+277
+00:11:09,636 --> 00:11:09,876
+Okay.
+
+278
+00:11:10,206 --> 00:11:14,406
+So it's, it basically says the following, if we have origins.
+
+279
+00:11:14,931 --> 00:11:19,671
+As a string, then convert list, but it's a list.
+
+280
+00:11:19,731 --> 00:11:20,631
+Then leave it as is.
+
+281
+00:11:21,351 --> 00:11:24,381
+For example, if you go back to end example here,
+
+282
+00:11:24,621 --> 00:11:27,741
+you will see that origins is written as a string
+
+283
+00:11:28,161 --> 00:11:31,521
+and between each link and the other is a comma.
+
+284
+00:11:32,181 --> 00:11:34,611
+You see a coma like this.
+
+285
+00:11:34,761 --> 00:11:35,061
+Okay?
+
+286
+00:11:35,391 --> 00:11:37,131
+So this is a string, so.
+
+287
+00:11:37,956 --> 00:11:40,146
+This function basically tells us the following.
+
+288
+00:11:40,296 --> 00:11:43,906
+When this script runs and we check for Origins
+
+289
+00:11:44,146 --> 00:11:47,326
+and we check it in any place like the terminal or
+
+290
+00:11:47,326 --> 00:11:51,256
+the en file or et cetera, we do this validation.
+
+291
+00:11:51,286 --> 00:11:51,586
+Okay?
+
+292
+00:11:52,396 --> 00:11:54,786
+And if it's so it's the thing, like the one that I just showed
+
+293
+00:11:54,786 --> 00:11:59,186
+you, then you should strip by the this split by this this com.
+
+294
+00:12:00,226 --> 00:12:01,906
+Okay, otherwise you leave it as is.
+
+295
+00:12:02,266 --> 00:12:05,866
+There is all, I think it's pretty obvious this
+
+296
+00:12:05,866 --> 00:12:07,726
+function is where we instantiate that sitting
+
+297
+00:12:07,726 --> 00:12:10,616
+class sitting class that has all the keys above.
+
+298
+00:12:11,036 --> 00:12:13,646
+And we call that function everywhere basically.
+
+299
+00:12:13,646 --> 00:12:15,596
+So this function turns out instance of the savings
+
+300
+00:12:15,596 --> 00:12:17,996
+clause, and we use that literally everywhere.
+
+301
+00:12:18,706 --> 00:12:21,676
+Literally the sort of each file, for example, or not the sort
+
+302
+00:12:21,676 --> 00:12:25,266
+of, yeah, when we initialize data, the database clause or the,
+
+303
+00:12:25,266 --> 00:12:27,876
+an sorry agent itself, we pass it, pass it to the initials.
+
+304
+00:12:28,326 --> 00:12:29,706
+So it takes the settings as an initial.
+
+305
+00:12:29,916 --> 00:12:31,806
+So we, we, we use it a lot.
+
+306
+00:12:31,956 --> 00:12:34,016
+So just understanding this logic will help you out.
+
+307
+00:12:34,526 --> 00:12:40,106
+So this was recording the config part and yes.
+
+308
+00:12:40,706 --> 00:12:43,286
+Regarding now what do we have here?
+
+309
+00:12:45,011 --> 00:12:49,271
+Regarding, so yeah, this is a config by and and example.
+
+310
+00:12:50,271 --> 00:12:52,581
+Okay, I'll, I'll just take a small break
+
+311
+00:12:52,581 --> 00:12:55,971
+and continue the rest of the files.
+
+312
+00:12:56,721 --> 00:12:57,171
+One second,
+
+313
+00:12:58,171 --> 00:13:00,926
+what I wanna do, 9 1 2.
+
+314
+00:13:01,926 --> 00:13:03,021
+In the main presenter.
+

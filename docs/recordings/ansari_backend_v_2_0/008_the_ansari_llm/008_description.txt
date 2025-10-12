@@ -1,0 +1,48 @@
+Dive into the inner workings of how the LLM operates in "ansari.py" as we break down its architecture, message handling, and tool integration in this in-depth walkthrough.
+
+IMPORTANT NOTE 1: Thoroughly check the chapters below; they usually contain the most up-to-date information (as some info in the video itself may get outdated).
+
+IMPORTANT NOTE 2: Even though the general idea of how we utilize LLMs and tools is the same, the codebase has significantly changed since the recording of this video, so consider the implementation details to be deprecated.
+
+▬▬ ⏱️ Timestamps  ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+00:00 Overview of Ansari.py
+00:30 Defining the Ansari Class
+01:18 Navigating "Ansari" Class Code
+03:02 The Message History Logic and replace_message_history()
+06:01 Roles in Messages (System, Assistant, User, Tool)
+06:31 Prompt Manager, Prompt Files, and Ansari's "Personality"
+09:40 Roles in Messages (Cont.)
+10:59 Tracing How "message_history" Gets Created
+14:55 Tool Usage Logic
+20:16 Handling Failures and Exceptions
+20:45 Conclusion and Next Steps
+
+▬▬ ℹ️ Details  ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+Assalamualaikum and welcome to our next video in the Ansari backend V2.0 series! In this session, we’ll take a deep dive into the Ansari LLM backend — exploring the architecture, message history logic, and how tools are integrated to power intelligent responses.
+
+What you’ll learn in this video:
+
+• How the Ansari class structures and manages user queries
+• The logic behind message history and response generation
+• An overview of tool usage and prompt management within the backend
+
+If you have any questions, feedback, or suggestions for future videos, leave a comment below! :] 🙌
+
+▬▬ 🔗 Relevant Links  ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+• Ansari Backend V2.0 Repo (till the time of recording): https://github.com/ansari-project/ansari-backend/tree/6a88b5035463eee08cf863575b208f7248524a18
+• Ansari Chat: https://ansari.chat/
+• Ansari WhatsApp: https://wa.me/16506563971
+• Ansari Android App: https://play.google.com/store/apps/details?id=chat.ansari.app&hl=en
+• Ansari iOS App: https://apps.apple.com/us/app/ansari-chat/id6743072108
+
+▬▬ 🗣️ Content Creation Details ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+• This video is part of the Ansari V2.0 Backend series: https://www.youtube.com/playlist?list=PLNVULOJciLkTEbs8t4bEEIgEbxIQnK9VE
+• Details and assets related to the creation of this series: https://github.com/OdyAsh/ansari-docs/tree/main/docs/recordings/ansari_backend_v_2_0
+
+▬▬ 🤝 Connect with us  ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+• Email: feedback@ansari.chat

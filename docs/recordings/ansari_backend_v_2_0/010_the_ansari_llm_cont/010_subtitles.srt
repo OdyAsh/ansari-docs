@@ -1,0 +1,3180 @@
+1
+00:00:00,299 --> 00:00:00,959
+Okay.
+
+2
+00:00:01,019 --> 00:00:01,859
+Hello everyone.
+
+3
+00:00:02,159 --> 00:00:05,329
+In this session we're going to continue the, the process, the
+
+4
+00:00:05,329 --> 00:00:09,279
+tool logic that I skimmed through when I explained it previously.
+
+5
+00:00:09,809 --> 00:00:12,090
+I skim through a lot of parts, so hopefully in this
+
+6
+00:00:12,090 --> 00:00:16,320
+one I will explain more in more detail how tool works.
+
+7
+00:00:17,070 --> 00:00:17,490
+Okay.
+
+8
+00:00:17,580 --> 00:00:21,330
+So we were previously here in, in this function
+
+9
+00:00:21,540 --> 00:00:24,070
+process, tool_call, and we saw how it gets used here.
+
+10
+00:00:24,670 --> 00:00:24,885
+We get.
+
+11
+00:00:25,445 --> 00:00:26,885
+Strings again, messages.
+
+12
+00:00:27,305 --> 00:00:27,455
+Okay.
+
+13
+00:00:27,455 --> 00:00:28,565
+Or dictionaries of messages.
+
+14
+00:00:29,435 --> 00:00:31,445
+And then we log that into the database.
+
+15
+00:00:32,115 --> 00:00:34,695
+And internally this will will add these messages to
+
+16
+00:00:34,695 --> 00:00:37,335
+the self note message history, the message history that
+
+17
+00:00:37,335 --> 00:00:39,240
+we have the current chat that we have with the user.
+
+18
+00:00:39,635 --> 00:00:42,235
+Okay, so that's what we know, but what's happening here?
+
+19
+00:00:42,235 --> 00:00:44,570
+What are these exact things and what
+
+20
+00:00:44,570 --> 00:00:46,250
+does process, tool, code do internally?
+
+21
+00:00:46,370 --> 00:00:48,390
+So let's go through that one by one.
+
+22
+00:00:49,380 --> 00:00:49,740
+Okay.
+
+23
+00:00:50,610 --> 00:00:52,230
+So let me open up Zen mode here.
+
+24
+00:00:53,190 --> 00:00:56,000
+Okay, so you have let me go line by line here.
+
+25
+00:00:56,430 --> 00:00:58,440
+Again, I said the supportive tool name is not
+
+26
+00:00:58,440 --> 00:01:00,210
+in the list of two names that we defined above.
+
+27
+00:01:00,570 --> 00:01:02,190
+Above, in, in here, okay.
+
+28
+00:01:02,190 --> 00:01:03,710
+In the good get tool name function.
+
+29
+00:01:04,370 --> 00:01:05,600
+Then we return.
+
+30
+00:01:05,930 --> 00:01:10,255
+Okay, so let's, let me go take a drive deep into a deep dive,
+
+31
+00:01:10,345 --> 00:01:17,435
+Ansari, into the, into this class the search Quran or clause.
+
+32
+00:01:17,765 --> 00:01:20,045
+So search Quran.
+
+33
+00:01:20,045 --> 00:01:22,485
+All of these are in folder, the called tools.
+
+34
+00:01:22,785 --> 00:01:24,215
+We have a couple of files here.
+
+35
+00:01:24,545 --> 00:01:24,875
+Okay.
+
+36
+00:01:25,085 --> 00:01:25,355
+Search.
+
+37
+00:01:25,625 --> 00:01:28,175
+These are all the tools that we have in the system right now.
+
+38
+00:01:28,865 --> 00:01:30,335
+And they all have the following structure.
+
+39
+00:01:30,335 --> 00:01:31,715
+So I'm going to explain one of them and
+
+40
+00:01:31,715 --> 00:01:33,125
+then you understand how the rest works.
+
+41
+00:01:33,875 --> 00:01:35,565
+We take any, like global variables.
+
+42
+00:01:35,565 --> 00:01:36,375
+Any keys here?
+
+43
+00:01:36,565 --> 00:01:39,115
+For here, we're using, I'll explain that in a second.
+
+44
+00:01:39,775 --> 00:01:44,725
+And then we have the tool name, we specify that globally as well.
+
+45
+00:01:45,175 --> 00:01:46,315
+And then we define the class here.
+
+46
+00:01:46,345 --> 00:01:46,525
+Okay.
+
+47
+00:01:46,525 --> 00:01:47,664
+What does this class to?
+
+48
+00:01:48,294 --> 00:01:49,945
+We take these keys.
+
+49
+00:01:50,215 --> 00:01:50,484
+Okay.
+
+50
+00:01:50,785 --> 00:01:54,445
+Right here as attributes, and then we get the tool description.
+
+51
+00:01:55,495 --> 00:01:56,695
+What is the tool description?
+
+52
+00:01:56,965 --> 00:01:57,294
+Okay.
+
+53
+00:01:58,225 --> 00:01:59,995
+I'll tell you what is the description in a second.
+
+54
+00:02:00,445 --> 00:02:04,945
+Basically, we are trying to give a description to the LM, which
+
+55
+00:02:04,945 --> 00:02:10,764
+is in our case GT or OpenAI model, and we're saying I want you
+
+56
+00:02:10,764 --> 00:02:14,545
+to recognize that we have a tool, we have a function that we
+
+57
+00:02:14,545 --> 00:02:19,144
+defined ourselves as developers and this function is called cro.
+
+58
+00:02:19,595 --> 00:02:19,744
+Okay?
+
+59
+00:02:20,675 --> 00:02:21,995
+That's, is its name.
+
+60
+00:02:22,415 --> 00:02:25,034
+Now I want to tell you, Mr.
+
+61
+00:02:25,064 --> 00:02:29,074
+Elem, that in order for you to deduce that the user
+
+62
+00:02:29,074 --> 00:02:33,474
+query could be answered by running this tool you can
+
+63
+00:02:33,474 --> 00:02:35,094
+understand this description that I will give you.
+
+64
+00:02:35,184 --> 00:02:36,624
+What is this description will be?
+
+65
+00:02:36,624 --> 00:02:39,564
+Was saying search and retrieve a relevant as based on
+
+66
+00:02:39,834 --> 00:02:42,714
+a specific topic, returns multiple as when applicable.
+
+67
+00:02:43,134 --> 00:02:46,284
+Okay, so this is it, its description we're describing here.
+
+68
+00:02:46,334 --> 00:02:48,649
+How do we and when do we expect this tool to run?
+
+69
+00:02:49,609 --> 00:02:49,909
+Okay.
+
+70
+00:02:50,479 --> 00:02:55,359
+And the other m understand this and so when applicable, and so
+
+71
+00:02:55,359 --> 00:02:58,420
+when we, when the user asks a question related to specific as.
+
+72
+00:02:59,394 --> 00:03:02,635
+And it's normally related to the user
+
+73
+00:03:02,635 --> 00:03:04,315
+wanting to know about certain is.
+
+74
+00:03:04,434 --> 00:03:06,894
+Again, know about IA two colon two,
+
+75
+00:03:06,894 --> 00:03:08,964
+or no is about patients or whatever.
+
+76
+00:03:09,384 --> 00:03:13,314
+Then the LLM will see the descriptions of all of
+
+77
+00:03:13,314 --> 00:03:16,674
+its available tools and then say, okay, based on
+
+78
+00:03:16,674 --> 00:03:18,854
+this description, I see that the user is technically
+
+79
+00:03:18,854 --> 00:03:21,804
+trying to search and t relevant A is based on.
+
+80
+00:03:22,174 --> 00:03:24,694
+A specific topic, which is patients in this example.
+
+81
+00:03:25,144 --> 00:03:27,934
+And so let me return to him multiple ayahs, okay.
+
+82
+00:03:28,114 --> 00:03:29,795
+Using this function, okay?
+
+83
+00:03:29,795 --> 00:03:31,534
+The function called search core on search.
+
+84
+00:03:32,014 --> 00:03:32,194
+Okay.
+
+85
+00:03:32,404 --> 00:03:35,494
+And so that's what the LLM tells itself internally.
+
+86
+00:03:35,944 --> 00:03:38,024
+We also tell the LLM the parameters that
+
+87
+00:03:38,054 --> 00:03:40,184
+we expect this search core on to to have.
+
+88
+00:03:40,754 --> 00:03:43,874
+We say that the the we have a type of object.
+
+89
+00:03:44,084 --> 00:03:46,074
+This, I think this syntax is standardized.
+
+90
+00:03:46,464 --> 00:03:46,884
+Okay.
+
+91
+00:03:47,564 --> 00:03:50,484
+And then we say here, in this part, the parameters
+
+92
+00:03:50,484 --> 00:03:53,184
+that we expect to be passed to the function.
+
+93
+00:03:53,364 --> 00:03:53,634
+Okay?
+
+94
+00:03:54,084 --> 00:03:55,704
+Here's the tricky thing that I actually
+
+95
+00:03:55,704 --> 00:03:59,264
+explained wrongly in the previously Yeah.
+
+96
+00:03:59,504 --> 00:04:01,144
+Couple of in the previous recording or a couple
+
+97
+00:04:01,144 --> 00:04:04,934
+of minutes ago, is that remember when I told you.
+
+98
+00:04:05,519 --> 00:04:07,829
+Let me get back to the query part.
+
+99
+00:04:08,729 --> 00:04:09,269
+Query.
+
+100
+00:04:10,679 --> 00:04:12,929
+Let me see, we'll see where it is.
+
+101
+00:04:14,369 --> 00:04:15,629
+No network workflow steps.
+
+102
+00:04:16,724 --> 00:04:18,764
+This is only, yeah, remember when I said that?
+
+103
+00:04:18,794 --> 00:04:20,714
+Remember when I gave example that the tool
+
+104
+00:04:20,744 --> 00:04:23,224
+orgs when the tool, when the LLM returns
+
+105
+00:04:23,459 --> 00:04:26,689
+arguments, we say that it's returned like this.
+
+106
+00:04:27,529 --> 00:04:27,709
+Okay?
+
+107
+00:04:27,709 --> 00:04:28,819
+We say query.
+
+108
+00:04:29,449 --> 00:04:32,449
+And then the 2.2 and the example that I gave, remember that part?
+
+109
+00:04:33,179 --> 00:04:35,394
+That's not completely, that's true in this case.
+
+110
+00:04:35,939 --> 00:04:36,719
+That's what's happening here.
+
+111
+00:04:37,139 --> 00:04:38,979
+But I said that I think I said that this
+
+112
+00:04:38,979 --> 00:04:40,899
+is the standard syntax that we always get.
+
+113
+00:04:40,899 --> 00:04:43,049
+The, no, this is not really the case.
+
+114
+00:04:43,049 --> 00:04:45,419
+It depends on how not we say.
+
+115
+00:04:45,974 --> 00:04:49,184
+To the, in the description of the tool that we're using.
+
+116
+00:04:49,214 --> 00:04:49,484
+Okay.
+
+117
+00:04:49,724 --> 00:04:52,714
+And since we're using multiple tools, we had to standardize.
+
+118
+00:04:53,014 --> 00:04:54,664
+What do you, what do we have to standardize?
+
+119
+00:04:55,094 --> 00:05:00,064
+We had to say, if I recall correctly, in each of these return
+
+120
+00:05:00,064 --> 00:05:02,764
+values, like in each of these descriptions of the Search
+
+121
+00:05:02,764 --> 00:05:06,424
+Quran tool and of the search model tool and tool of the
+
+122
+00:05:06,424 --> 00:05:09,274
+tools, we had to say that we expect a parameter called query.
+
+123
+00:05:09,919 --> 00:05:12,909
+Okay, so I believe if we go here Hadiths.
+
+124
+00:05:13,079 --> 00:05:13,379
+Okay.
+
+125
+00:05:14,519 --> 00:05:16,469
+Why is the file not found?
+
+126
+00:05:16,469 --> 00:05:17,159
+Okay, one second.
+
+127
+00:05:17,519 --> 00:05:18,329
+Did we delete that?
+
+128
+00:05:18,509 --> 00:05:22,679
+One sec? Where is the Explorer search?
+
+129
+00:05:22,679 --> 00:05:23,199
+Hadiths?
+
+130
+00:05:23,219 --> 00:05:23,229
+Yeah.
+
+131
+00:05:23,229 --> 00:05:23,399
+Okay, sorry.
+
+132
+00:05:23,939 --> 00:05:25,649
+And I wanna hide.
+
+133
+00:05:26,804 --> 00:05:27,164
+Okay.
+
+134
+00:05:28,304 --> 00:05:29,864
+Yeah, you'll see query here as well.
+
+135
+00:05:30,104 --> 00:05:30,374
+Okay.
+
+136
+00:05:30,614 --> 00:05:33,884
+So that the structure is similar and we acquire a query.
+
+137
+00:05:33,944 --> 00:05:36,994
+The query here means that when the LLM calls this, or
+
+138
+00:05:36,994 --> 00:05:40,444
+when the LLM recognizes that we need this function, okay.
+
+139
+00:05:40,814 --> 00:05:43,584
+And generate the generates parameters for it.
+
+140
+00:05:44,334 --> 00:05:46,614
+The LLM must generate the parameter called query.
+
+141
+00:05:46,914 --> 00:05:47,874
+That's what requires me.
+
+142
+00:05:48,294 --> 00:05:48,474
+Okay?
+
+143
+00:05:49,134 --> 00:05:51,804
+And so if there are parameters defined here
+
+144
+00:05:52,164 --> 00:05:53,934
+but aren't mentioned required here, then the
+
+145
+00:05:53,934 --> 00:05:57,954
+LLM can or cannot or may not generate them.
+
+146
+00:05:58,344 --> 00:05:58,674
+Okay?
+
+147
+00:05:59,454 --> 00:06:01,334
+So that's another thing based on what it sees
+
+148
+00:06:01,334 --> 00:06:05,144
+fit based on the user's description the user's.
+
+149
+00:06:05,774 --> 00:06:08,154
+Okay so this part, the query here has to be mentioned.
+
+150
+00:06:08,874 --> 00:06:12,864
+And when we say this part again, we are saying, okay, LLM when
+
+151
+00:06:12,864 --> 00:06:16,304
+we, when you generate for us parameters or arguments, okay?
+
+152
+00:06:16,754 --> 00:06:18,614
+Based on what you understand from these queries.
+
+153
+00:06:19,049 --> 00:06:22,499
+Please mention the parameter's name as query.
+
+154
+00:06:22,979 --> 00:06:23,129
+Okay.
+
+155
+00:06:23,129 --> 00:06:24,269
+That's what this part says.
+
+156
+00:06:24,389 --> 00:06:25,919
+And this query, when you generat
+
+157
+00:06:25,919 --> 00:06:27,269
+it, we expect that to be a string.
+
+158
+00:06:27,569 --> 00:06:29,219
+That's why you've seen the example that I
+
+159
+00:06:29,219 --> 00:06:32,529
+gave a query and its value is two column two.
+
+160
+00:06:32,529 --> 00:06:35,359
+The A the the surah and diverse number.
+
+161
+00:06:35,769 --> 00:06:37,629
+It'll be a string because we specified
+
+162
+00:06:37,629 --> 00:06:39,189
+that you shall return to the string.
+
+163
+00:06:39,614 --> 00:06:39,904
+Okay?
+
+164
+00:06:40,689 --> 00:06:40,959
+Okay.
+
+165
+00:06:40,959 --> 00:06:42,159
+So what if this was an integrator?
+
+166
+00:06:42,954 --> 00:06:43,254
+Okay.
+
+167
+00:06:43,914 --> 00:06:48,524
+And the search AI function just gets, use the surah not the verse.
+
+168
+00:06:48,644 --> 00:06:50,744
+Then we would've returned something like this.
+
+169
+00:06:50,744 --> 00:06:54,674
+It would've been query and then one, two
+
+170
+00:06:54,914 --> 00:06:57,764
+for surah to back around, or one suta.
+
+171
+00:06:57,764 --> 00:06:57,774
+Okay.
+
+172
+00:06:57,774 --> 00:06:58,514
+And it'll be like that.
+
+173
+00:06:58,514 --> 00:06:59,144
+It'll be like that.
+
+174
+00:06:59,144 --> 00:07:00,554
+But this obviously is in a string.
+
+175
+00:07:00,604 --> 00:07:01,594
+And the value will be an integral
+
+176
+00:07:01,954 --> 00:07:03,604
+if we specify the type to be an in.
+
+177
+00:07:04,084 --> 00:07:04,264
+Okay.
+
+178
+00:07:04,879 --> 00:07:05,569
+That's an example.
+
+179
+00:07:06,139 --> 00:07:09,709
+Again you have to return to open ai documentation to see
+
+180
+00:07:09,739 --> 00:07:12,609
+what it expects, like maybe tool calls in, in open ai.
+
+181
+00:07:12,939 --> 00:07:13,509
+Expect.
+
+182
+00:07:14,224 --> 00:07:16,684
+When we say an int, we say it an integral, not an int.
+
+183
+00:07:16,894 --> 00:07:19,284
+So these are just terminologies based on the
+
+184
+00:07:19,284 --> 00:07:21,564
+SDK that we're using the provider we're using.
+
+185
+00:07:21,614 --> 00:07:23,804
+So you can return back to that for reference.
+
+186
+00:07:24,404 --> 00:07:26,454
+And and the description for what this query for what
+
+187
+00:07:26,454 --> 00:07:29,934
+this parameter represents, description, topic, or
+
+188
+00:07:29,934 --> 00:07:31,764
+subject matter to search for in haddi collection.
+
+189
+00:07:31,764 --> 00:07:33,834
+But because this is Hadiths, so Ansari, I should
+
+190
+00:07:33,834 --> 00:07:35,724
+have returned to our search for on example.
+
+191
+00:07:36,849 --> 00:07:37,569
+Search Quran.
+
+192
+00:07:38,049 --> 00:07:39,039
+You'll see it here.
+
+193
+00:07:39,039 --> 00:07:41,254
+Topical subject matter to search for within the Holy Quran.
+
+194
+00:07:41,944 --> 00:07:42,214
+Okay.
+
+195
+00:07:42,854 --> 00:07:45,644
+This along with the general description of the function,
+
+196
+00:07:46,214 --> 00:07:50,444
+the LLM understands internally and then sees any user query
+
+197
+00:07:50,774 --> 00:07:54,634
+when they ask the front end of ansari and say, okay, based
+
+198
+00:07:54,634 --> 00:07:56,884
+on what, from what I understand from the description here
+
+199
+00:07:56,884 --> 00:07:59,104
+and the description of the parameters here, I think this
+
+200
+00:07:59,104 --> 00:08:01,159
+function is a function that that we want to use internally.
+
+201
+00:08:01,459 --> 00:08:01,729
+Okay?
+
+202
+00:08:01,969 --> 00:08:04,079
+So that's how it maps this logic.
+
+203
+00:08:04,529 --> 00:08:06,089
+So this is a good tool description.
+
+204
+00:08:06,089 --> 00:08:06,839
+Where do we use that?
+
+205
+00:08:07,744 --> 00:08:08,704
+We use that.
+
+206
+00:08:08,974 --> 00:08:11,014
+And again, all of that syntax, the way we write
+
+207
+00:08:11,014 --> 00:08:14,164
+this syntax these specific key names, these
+
+208
+00:08:14,164 --> 00:08:16,114
+are based on the documentation of open eye.
+
+209
+00:08:16,624 --> 00:08:16,924
+Okay?
+
+210
+00:08:17,734 --> 00:08:18,094
+Okay.
+
+211
+00:08:18,694 --> 00:08:19,984
+So where do we use that?
+
+212
+00:08:20,374 --> 00:08:22,594
+In here instead of the tools attribute?
+
+213
+00:08:22,594 --> 00:08:23,194
+And Ansari.
+
+214
+00:08:23,734 --> 00:08:26,224
+We we is a list of the two descriptions
+
+215
+00:08:26,444 --> 00:08:27,674
+which is a list of strings.
+
+216
+00:08:27,764 --> 00:08:29,384
+'cause that's a return value of two description.
+
+217
+00:08:29,804 --> 00:08:30,164
+Okay?
+
+218
+00:08:30,704 --> 00:08:33,264
+So these are are the descriptions for the tools.
+
+219
+00:08:33,804 --> 00:08:35,304
+And so where do we use this?
+
+220
+00:08:36,234 --> 00:08:36,984
+Use it here.
+
+221
+00:08:37,464 --> 00:08:39,204
+Remember that part when I was discussing the
+
+222
+00:08:39,204 --> 00:08:41,184
+unpacking thing with the parameters to be passed?
+
+223
+00:08:41,664 --> 00:08:46,134
+We say to light lm. To pass these parameters to the model
+
+224
+00:08:46,164 --> 00:08:48,864
+that we're currently using, which is open I, which GBT model.
+
+225
+00:08:49,314 --> 00:08:50,814
+And we are passing this parameter as well.
+
+226
+00:08:50,814 --> 00:08:51,894
+This is a parameter of tools.
+
+227
+00:08:52,224 --> 00:08:54,544
+So if used tool is true, which is which we
+
+228
+00:08:54,544 --> 00:08:56,524
+state here in the, on calling this function,
+
+229
+00:08:57,004 --> 00:09:01,414
+then we we will unpack this key value peers.
+
+230
+00:09:01,994 --> 00:09:04,004
+So the tools is the thing that I was just saying.
+
+231
+00:09:04,244 --> 00:09:07,749
+The model expects the light LLM expects in the
+
+232
+00:09:07,779 --> 00:09:10,329
+parameters, a key core tools, and then the value will
+
+233
+00:09:10,329 --> 00:09:12,459
+be a list of descriptions of the tools that you have.
+
+234
+00:09:12,609 --> 00:09:12,879
+Okay?
+
+235
+00:09:13,599 --> 00:09:15,344
+For example, the one that I just showed you here.
+
+236
+00:09:16,179 --> 00:09:16,389
+Okay.
+
+237
+00:09:16,829 --> 00:09:18,459
+And Ansari, this list did I say string?
+
+238
+00:09:18,549 --> 00:09:19,209
+It's a dictionary.
+
+239
+00:09:19,214 --> 00:09:19,804
+Dictionary.
+
+240
+00:09:20,049 --> 00:09:20,169
+Okay.
+
+241
+00:09:20,169 --> 00:09:21,369
+The descriptions are dictionaries.
+
+242
+00:09:22,059 --> 00:09:25,919
+So if I, because I said a minute ago, I said oops.
+
+243
+00:09:26,789 --> 00:09:29,909
+I said a minute ago that this was a list of string.
+
+244
+00:09:29,909 --> 00:09:30,809
+No, a list of dictionaries.
+
+245
+00:09:30,929 --> 00:09:31,169
+Okay.
+
+246
+00:09:31,289 --> 00:09:31,649
+Yeah.
+
+247
+00:09:31,739 --> 00:09:34,319
+Hopefully you caught on that one when I made that mistake.
+
+248
+00:09:34,589 --> 00:09:37,079
+And then the tool choice is auto, what does this mean?
+
+249
+00:09:37,079 --> 00:09:39,319
+It means we okay, so basically we're saying.
+
+250
+00:09:40,474 --> 00:09:45,834
+GPT or OpenAI, we instruct you to use this tool in what fashion?
+
+251
+00:09:45,984 --> 00:09:48,204
+Either "auto" or, I can't remember.
+
+252
+00:09:48,204 --> 00:09:48,984
+Its other options.
+
+253
+00:09:49,034 --> 00:09:50,614
+You can offer the documentation of OpenAI.
+
+254
+00:09:50,634 --> 00:09:53,034
+I think maybe always or like function
+
+255
+00:09:53,404 --> 00:09:55,144
+which is like a, another value stating.
+
+256
+00:09:55,174 --> 00:09:57,634
+We, you should always use tools no
+
+257
+00:09:57,634 --> 00:09:59,044
+matter the query that the user gives you.
+
+258
+00:09:59,044 --> 00:10:02,314
+You should always use tools and so even
+
+259
+00:10:02,314 --> 00:10:03,664
+if you think all the tools that we have.
+
+260
+00:10:04,409 --> 00:10:06,419
+In the system, if we think all of them don't
+
+261
+00:10:06,479 --> 00:10:08,099
+really match the description of the query that
+
+262
+00:10:08,099 --> 00:10:11,369
+the user wants, you still have to use one of them.
+
+263
+00:10:11,754 --> 00:10:14,574
+So you use the most one you think is possible, even if all
+
+264
+00:10:14,574 --> 00:10:17,754
+of them are really not likely to be what the user wants.
+
+265
+00:10:17,944 --> 00:10:19,384
+This is another value, but we don't do that.
+
+266
+00:10:19,384 --> 00:10:19,914
+We make it auto.
+
+267
+00:10:20,674 --> 00:10:23,344
+If you think all of the tools that we have don't really
+
+268
+00:10:23,564 --> 00:10:25,804
+don't really have a high probability that they will give
+
+269
+00:10:25,804 --> 00:10:28,994
+the answer that the user wants then then don't use tools.
+
+270
+00:10:29,114 --> 00:10:33,264
+Just use a response with normal words as a LLM always does.
+
+271
+00:10:33,474 --> 00:10:36,024
+Okay, so this is another thing.
+
+272
+00:10:36,654 --> 00:10:39,114
+Hopefully this is explained and the
+
+273
+00:10:39,114 --> 00:10:41,064
+response format, I explained that before.
+
+274
+00:10:41,664 --> 00:10:43,404
+Returning back to the tool of search
+
+275
+00:10:43,404 --> 00:10:45,484
+core on this is a tool description.
+
+276
+00:10:45,544 --> 00:10:47,524
+The tool name is just a wrapper.
+
+277
+00:10:47,554 --> 00:10:49,474
+It's just an section to get the tool name that we defined
+
+278
+00:10:49,474 --> 00:10:51,934
+above, which is, in our case in this fight, is Search Quran.
+
+279
+00:10:52,744 --> 00:10:57,464
+And the run function is, I believe what we call.
+
+280
+00:10:57,524 --> 00:11:01,334
+Can you please help me out in, yeah.
+
+281
+00:11:01,364 --> 00:11:01,514
+Okay.
+
+282
+00:11:01,514 --> 00:11:02,204
+It's in okay.
+
+283
+00:11:02,324 --> 00:11:03,944
+So this is like an internal function here.
+
+284
+00:11:03,994 --> 00:11:05,794
+It should be prefixed with an underscore, but, okay.
+
+285
+00:11:05,794 --> 00:11:08,584
+Anyways let me actually skip that and go to the.
+
+286
+00:11:08,719 --> 00:11:12,019
+So the functions that we care for here run as this a thing.
+
+287
+00:11:12,019 --> 00:11:15,439
+These are the ones that we call actually in ansari, we
+
+288
+00:11:15,439 --> 00:11:18,514
+call here in the part that I explained before quickly is
+
+289
+00:11:18,514 --> 00:11:21,004
+that we get the results, we get the final values returned
+
+290
+00:11:21,004 --> 00:11:23,344
+from the function that we have, the tool that we have.
+
+291
+00:11:24,304 --> 00:11:26,254
+We get the values from them from this function.
+
+292
+00:11:26,314 --> 00:11:26,554
+Okay?
+
+293
+00:11:26,764 --> 00:11:28,394
+And again, if you recall in the context of
+
+294
+00:11:28,394 --> 00:11:30,264
+search core on these will be a list of ayahs.
+
+295
+00:11:30,734 --> 00:11:33,164
+So if the user a asks, okay, tell me about the, is the
+
+296
+00:11:33,434 --> 00:11:35,894
+two two, two and two three and two four, for example.
+
+297
+00:11:37,184 --> 00:11:39,284
+Then this test will be that.
+
+298
+00:11:39,674 --> 00:11:41,734
+So that's that's the thing as well that will give
+
+299
+00:11:41,734 --> 00:11:44,124
+you the most relevant tools from the user query.
+
+300
+00:11:44,514 --> 00:11:46,164
+Relevant is from the user query.
+
+301
+00:11:46,464 --> 00:11:46,704
+Okay?
+
+302
+00:11:47,034 --> 00:11:48,264
+And it'll be a list of strings.
+
+303
+00:11:48,624 --> 00:11:49,734
+Of a in here.
+
+304
+00:11:50,184 --> 00:11:52,464
+Okay, so what does this run assist do?
+
+305
+00:11:52,614 --> 00:11:54,799
+Let us go and see what it does.
+
+306
+00:11:55,439 --> 00:11:57,239
+Session Core on four, the query here.
+
+307
+00:11:57,239 --> 00:12:00,509
+So for example, two, column two, and the
+
+308
+00:12:00,509 --> 00:12:02,474
+default number of results that we return.
+
+309
+00:12:02,534 --> 00:12:06,184
+10. Okay, so we try the 10 most probable results.
+
+310
+00:12:06,544 --> 00:12:09,164
+Obviously in our case, if it's just a two column
+
+311
+00:12:09,164 --> 00:12:12,394
+two query, then then only the first result will
+
+312
+00:12:12,394 --> 00:12:14,524
+matter for us, but we return the others nonetheless.
+
+313
+00:12:15,034 --> 00:12:16,694
+And then we run this function, which
+
+314
+00:12:16,694 --> 00:12:18,989
+will return us this these ayahs.
+
+315
+00:12:19,319 --> 00:12:22,194
+And for these ayahs we format them in this function
+
+316
+00:12:22,194 --> 00:12:26,314
+takes the Ayah number from so this is a dictionary, okay?
+
+317
+00:12:26,414 --> 00:12:27,884
+The results is, are list of dictionaries.
+
+318
+00:12:27,944 --> 00:12:28,994
+So all here is dictionary.
+
+319
+00:12:29,444 --> 00:12:32,324
+And we take that all and pass it to this function, or
+
+320
+00:12:32,324 --> 00:12:35,624
+here is called a, I dunno why it's called a R for, okay.
+
+321
+00:12:35,894 --> 00:12:39,524
+And then we take the from each dictionary, we get the id.
+
+322
+00:12:40,049 --> 00:12:40,379
+Sorry.
+
+323
+00:12:40,979 --> 00:12:44,529
+We get the id, we get the text, if any which is
+
+324
+00:12:44,529 --> 00:12:46,479
+in Arabic, and we get the text in English, if any.
+
+325
+00:12:46,659 --> 00:12:46,989
+Okay.
+
+326
+00:12:47,889 --> 00:12:51,059
+And then we, it like, so a then I number and
+
+327
+00:12:51,059 --> 00:12:53,259
+then the Arabic text for this a and then we
+
+328
+00:12:53,259 --> 00:12:54,609
+see it in Arabic and then we see it in English.
+
+329
+00:12:54,819 --> 00:12:56,589
+So that's a string within the string here.
+
+330
+00:12:56,859 --> 00:12:58,299
+So this result will be a string.
+
+331
+00:12:58,719 --> 00:13:00,424
+And we do that in a loop, so we have.
+
+332
+00:13:01,094 --> 00:13:01,904
+A list of strings.
+
+333
+00:13:02,024 --> 00:13:05,164
+E string is an Ayah number and it's Arabic and it's English.
+
+334
+00:13:05,464 --> 00:13:05,704
+Okay?
+
+335
+00:13:06,314 --> 00:13:08,474
+This is what run as this does as a string is
+
+336
+00:13:08,474 --> 00:13:10,719
+basically the same thing, but this will not be a list.
+
+337
+00:13:10,719 --> 00:13:11,410
+It'll be a string.
+
+338
+00:13:11,439 --> 00:13:12,550
+So that's why we say a string.
+
+339
+00:13:13,000 --> 00:13:13,300
+Okay?
+
+340
+00:13:13,750 --> 00:13:14,890
+And we separate it with a new line.
+
+341
+00:13:15,380 --> 00:13:15,920
+This is the thing.
+
+342
+00:13:15,949 --> 00:13:17,480
+And so what does run do?
+
+343
+00:13:17,480 --> 00:13:19,795
+But this is the core logic, this is actually
+
+344
+00:13:19,795 --> 00:13:22,955
+where the function is happening is in dot run.
+
+345
+00:13:23,165 --> 00:13:23,945
+so.run here.
+
+346
+00:13:24,035 --> 00:13:25,805
+It is just an API code.
+
+347
+00:13:25,805 --> 00:13:28,805
+We say the headers that we have, we serve API key, which
+
+348
+00:13:28,805 --> 00:13:33,665
+we define above, in which is this one, API key met, and
+
+349
+00:13:33,665 --> 00:13:36,985
+this which is in the environment variables in the in, for
+
+350
+00:13:36,985 --> 00:13:40,405
+example, environment variables you, you should define in here.
+
+351
+00:13:42,444 --> 00:13:43,135
+Where is it?
+
+352
+00:13:43,375 --> 00:13:44,964
+In here, token.
+
+353
+00:13:46,735 --> 00:13:48,065
+And then you have.
+
+354
+00:13:49,505 --> 00:13:49,715
+Oops.
+
+355
+00:13:50,375 --> 00:13:55,025
+You have payload query which is a query 2.2, column two,
+
+356
+00:13:55,025 --> 00:13:58,235
+whatever number of results, which is stand by default, or did we?
+
+357
+00:13:58,385 --> 00:13:58,565
+Okay.
+
+358
+00:13:58,565 --> 00:14:01,040
+We left it here as five, but I think we pass it here.
+
+359
+00:14:02,030 --> 00:14:03,560
+Yeah, we pass it to 10 because here
+
+360
+00:14:03,560 --> 00:14:04,835
+the full is 10 anyways, anyways.
+
+361
+00:14:05,000 --> 00:14:08,260
+And then the the get text one is the Quran.
+
+362
+00:14:08,260 --> 00:14:08,500
+Okay.
+
+363
+00:14:08,500 --> 00:14:10,630
+There's a type of the return that we want.
+
+364
+00:14:10,630 --> 00:14:12,820
+So one, because it's all hard to code because
+
+365
+00:14:12,820 --> 00:14:14,470
+we always want the Quran in this case.
+
+366
+00:14:14,860 --> 00:14:16,720
+So the final question is what is this?
+
+367
+00:14:16,970 --> 00:14:18,230
+What are we sending here?
+
+368
+00:14:18,260 --> 00:14:20,150
+What is this base l what is this API
+
+369
+00:14:20,150 --> 00:14:22,485
+actually, if we go together and see it.
+
+370
+00:14:23,520 --> 00:14:24,090
+In here.
+
+371
+00:14:25,200 --> 00:14:26,700
+Let me up.
+
+372
+00:14:26,790 --> 00:14:30,750
+Design mode and, um, get up here.
+
+373
+00:14:32,520 --> 00:14:32,940
+Mm-hmm.
+
+374
+00:14:34,890 --> 00:14:35,550
+Okay.
+
+375
+00:14:35,640 --> 00:14:36,360
+What was it?
+
+376
+00:14:36,360 --> 00:14:42,000
+Uh, 'cause that's actually API, um, I want uh, a second.
+
+377
+00:14:42,330 --> 00:14:43,260
+Will this give me.
+
+378
+00:14:44,355 --> 00:14:45,565
+The search kalimat.
+
+379
+00:14:45,565 --> 00:14:47,925
+Okay, so kalimat dev, the API is obviously it
+
+380
+00:14:47,925 --> 00:14:50,385
+won't have a ui, so apologies for that dumb search.
+
+381
+00:14:50,835 --> 00:14:53,805
+Yeah, so this is just a service that allows us
+
+382
+00:14:53,805 --> 00:14:56,945
+to, to get AI powered searching for yeah, excuse.
+
+383
+00:14:56,945 --> 00:14:57,415
+Ansari.
+
+384
+00:14:57,485 --> 00:14:58,415
+This was needed before.
+
+385
+00:14:58,895 --> 00:14:59,194
+Nice.
+
+386
+00:14:59,585 --> 00:15:00,395
+I'm glad they added that.
+
+387
+00:15:00,605 --> 00:15:04,165
+Anyways uh, and then you can you can see an
+
+388
+00:15:04,165 --> 00:15:05,754
+example here into something from the Holy Quran.
+
+389
+00:15:05,754 --> 00:15:06,595
+So if I say.
+
+390
+00:15:07,494 --> 00:15:12,384
+2.2 we get the Quran and sun and then the Quran, we get the ba
+
+391
+00:15:14,964 --> 00:15:16,884
+and it's English equivalent is this.
+
+392
+00:15:17,214 --> 00:15:18,685
+And so that's, if you can imagine now
+
+393
+00:15:18,685 --> 00:15:20,185
+the API from the API will get that.
+
+394
+00:15:20,334 --> 00:15:21,504
+We get the first couple of results.
+
+395
+00:15:21,624 --> 00:15:24,415
+I'm actually glad that now this returns only the first result.
+
+396
+00:15:24,444 --> 00:15:26,954
+This is amazing because if I now search for two, two
+
+397
+00:15:27,044 --> 00:15:28,964
+and get the first 10, you remember that parameter?
+
+398
+00:15:28,964 --> 00:15:30,284
+10, 10 values.
+
+399
+00:15:30,744 --> 00:15:32,574
+It actually will just get, give us one because
+
+400
+00:15:32,574 --> 00:15:35,064
+the API itself will return the nearest.
+
+401
+00:15:35,559 --> 00:15:37,909
+Um, Which is the first ayah.
+
+402
+00:15:38,299 --> 00:15:40,399
+So even if we set it to 10, in this
+
+403
+00:15:40,399 --> 00:15:42,079
+specific case, we only get one.
+
+404
+00:15:42,139 --> 00:15:43,429
+But if I actually write patients,
+
+405
+00:15:45,889 --> 00:15:48,349
+okay, we get something like this.
+
+406
+00:15:48,639 --> 00:15:50,769
+All of them are related to patients and perseverance
+
+407
+00:15:51,009 --> 00:15:54,009
+from different messenger, from a couple of examples here.
+
+408
+00:15:54,009 --> 00:15:56,859
+And so this is we can get all of this, we can get the first 10.
+
+409
+00:15:57,484 --> 00:15:58,774
+And we get, it's English and it's
+
+410
+00:15:58,774 --> 00:16:00,394
+Arabic versions, and then we send that.
+
+411
+00:16:00,394 --> 00:16:01,954
+So we have that for the, for here.
+
+412
+00:16:01,954 --> 00:16:03,664
+And then we have all of that is for koan, which
+
+413
+00:16:03,664 --> 00:16:06,244
+is one get text one, and then for the Asana.
+
+414
+00:16:06,244 --> 00:16:09,304
+And we have them as well in here in English and Arabic.
+
+415
+00:16:09,574 --> 00:16:10,834
+Amazing website to be honest.
+
+416
+00:16:11,174 --> 00:16:12,254
+So that's a tool that we have.
+
+417
+00:16:12,284 --> 00:16:12,584
+Okay.
+
+418
+00:16:13,274 --> 00:16:15,854
+So again, why are we using this tool just to reduce
+
+419
+00:16:15,854 --> 00:16:18,494
+the possibility of ansari, hallucinating as, and we
+
+420
+00:16:18,494 --> 00:16:20,804
+don't wanna do that, so we try to get them from here.
+
+421
+00:16:21,149 --> 00:16:21,539
+Okay.
+
+422
+00:16:21,729 --> 00:16:23,289
+So this one is for the Quran.
+
+423
+00:16:23,379 --> 00:16:25,959
+You see the similar one for the Hadith, but to be
+
+424
+00:16:25,959 --> 00:16:28,259
+honest, the rest of the files structure in a similar way.
+
+425
+00:16:28,289 --> 00:16:29,969
+So I will not go through them, but if you
+
+426
+00:16:29,969 --> 00:16:31,859
+understood this logic, then we're good to go.
+
+427
+00:16:32,429 --> 00:16:33,969
+Okay, so now you understand.
+
+428
+00:16:34,269 --> 00:16:36,969
+And another thing that you might have noticed is
+
+429
+00:16:36,969 --> 00:16:38,879
+that I kept seeing tool to, we have this tool,
+
+430
+00:16:38,879 --> 00:16:40,049
+we have this function, we have this function.
+
+431
+00:16:40,049 --> 00:16:41,729
+We define the function in the code, there is a function.
+
+432
+00:16:42,059 --> 00:16:44,819
+You'll see that actually the tool or
+
+433
+00:16:44,819 --> 00:16:46,019
+the function code, search core on.
+
+434
+00:16:46,889 --> 00:16:47,309
+Search qu.
+
+435
+00:16:47,549 --> 00:16:51,389
+This is technically, there is no actual function
+
+436
+00:16:51,419 --> 00:16:53,699
+in the system that we have is called Search qu.
+
+437
+00:16:54,059 --> 00:16:57,539
+Like we didn't say def search qu and then all of the
+
+438
+00:16:57,539 --> 00:16:59,929
+No, but you can imagine we did something like that.
+
+439
+00:16:59,929 --> 00:17:02,899
+And then we say that this accepts a query and this is a string.
+
+440
+00:17:03,199 --> 00:17:03,619
+Okay.
+
+441
+00:17:03,949 --> 00:17:07,359
+And in here we put the dog string of of this part.
+
+442
+00:17:07,439 --> 00:17:09,539
+The assert and achieve is based on whatever.
+
+443
+00:17:09,824 --> 00:17:12,584
+And that's, that description is what we put in doxing here.
+
+444
+00:17:12,704 --> 00:17:16,094
+And then in here we call the API of the just show.
+
+445
+00:17:16,094 --> 00:17:16,934
+You can imagine that.
+
+446
+00:17:17,054 --> 00:17:17,354
+Okay.
+
+447
+00:17:17,474 --> 00:17:19,874
+Or that's at least what the LLM imagines.
+
+448
+00:17:20,264 --> 00:17:23,384
+So when I say to the LM, Hey, we have in our system a function
+
+449
+00:17:23,444 --> 00:17:25,694
+called search on which is this subscription and expect this
+
+450
+00:17:25,694 --> 00:17:29,384
+parameters, the LLM will say, okay, and that's all that it knows.
+
+451
+00:17:29,684 --> 00:17:29,924
+Okay?
+
+452
+00:17:29,924 --> 00:17:32,504
+It doesn't know the doesn't know that we actually have
+
+453
+00:17:32,504 --> 00:17:35,574
+this as a clause and this clause has, these methods
+
+454
+00:17:35,574 --> 00:17:38,094
+and that we use the run as list method first, which
+
+455
+00:17:38,094 --> 00:17:41,134
+runs the run and PPA methods and then all of that.
+
+456
+00:17:41,134 --> 00:17:42,394
+We don't the LLM doesn't know that.
+
+457
+00:17:42,754 --> 00:17:44,884
+It just knows this description based on what we gave it.
+
+458
+00:17:45,184 --> 00:17:48,514
+And so what we care about only from the LLM is
+
+459
+00:17:48,514 --> 00:17:51,394
+that from the user query, which is free form text.
+
+460
+00:17:51,754 --> 00:17:54,154
+We just get the keywords that the user wants to search for.
+
+461
+00:17:54,159 --> 00:17:55,984
+So for example, patience and then
+
+462
+00:17:55,984 --> 00:17:57,394
+perseverance, and then we get these.
+
+463
+00:17:57,874 --> 00:17:58,534
+Keywords.
+
+464
+00:17:58,954 --> 00:18:03,579
+And then we the LLM the AI is is responsible for that for
+
+465
+00:18:03,579 --> 00:18:06,129
+just summarizing and extracting relevant if from the user,
+
+466
+00:18:06,489 --> 00:18:09,464
+getting these keywords and then passing that as a as a as
+
+467
+00:18:09,464 --> 00:18:12,224
+a value to the parameter that we told that its name is we.
+
+468
+00:18:12,794 --> 00:18:13,094
+Okay?
+
+469
+00:18:13,484 --> 00:18:16,144
+So just have this visualization in your head.
+
+470
+00:18:16,264 --> 00:18:16,504
+Okay?
+
+471
+00:18:16,774 --> 00:18:18,274
+'cause that's the most important thing about tools.
+
+472
+00:18:19,264 --> 00:18:22,464
+Basically one last time when we say we applied tool
+
+473
+00:18:22,464 --> 00:18:26,064
+functionalities in LLM, what we're saying is we tell it,
+
+474
+00:18:26,664 --> 00:18:31,664
+please, from the user query, see if it it can be solved.
+
+475
+00:18:31,694 --> 00:18:33,944
+The user question can be solved by one of the
+
+476
+00:18:33,944 --> 00:18:35,744
+descriptions that I gave you in these tools here.
+
+477
+00:18:36,074 --> 00:18:37,874
+And if you think these descriptions match the
+
+478
+00:18:37,874 --> 00:18:41,114
+user's query, then please extract the relevant info
+
+479
+00:18:41,114 --> 00:18:43,124
+from the user's query and send it as a parameter.
+
+480
+00:18:43,574 --> 00:18:43,994
+To me.
+
+481
+00:18:44,354 --> 00:18:45,794
+Okay, I'll handle it.
+
+482
+00:18:45,944 --> 00:18:47,474
+When I get that parameters, I'll handle it.
+
+483
+00:18:47,624 --> 00:18:48,524
+How did I handle it?
+
+484
+00:18:48,984 --> 00:18:50,574
+In here and run as list.
+
+485
+00:18:51,594 --> 00:18:53,974
+I handle it here by, by by yeah.
+
+486
+00:18:54,034 --> 00:18:55,234
+I ended by getting the query.
+
+487
+00:18:55,234 --> 00:18:56,614
+This is a query that I got from the ai.
+
+488
+00:18:56,734 --> 00:18:57,034
+Okay.
+
+489
+00:18:57,424 --> 00:19:00,244
+And then I handle it by doing this function
+
+490
+00:19:00,244 --> 00:19:03,034
+process tool called, which will use that AI
+
+491
+00:19:03,274 --> 00:19:06,154
+obtained query from the user, and then run it.
+
+492
+00:19:06,544 --> 00:19:08,524
+In this run, this which I meet Okay.
+
+493
+00:19:08,524 --> 00:19:08,944
+In the code.
+
+494
+00:19:09,194 --> 00:19:11,144
+Just hopefully this logic is now clear to you.
+
+495
+00:19:11,864 --> 00:19:13,754
+And this was a logic of tooling.
+
+496
+00:19:13,754 --> 00:19:16,074
+The only thing that remains is the structure
+
+497
+00:19:16,074 --> 00:19:18,144
+of the messages re related to tools.
+
+498
+00:19:18,564 --> 00:19:22,644
+So once we got the query, once we got, Ansari, the results, which
+
+499
+00:19:22,644 --> 00:19:25,654
+is again, you can visualize now just a list of strings, list
+
+500
+00:19:25,654 --> 00:19:29,554
+of the ayahs I number English and Arabic, this list of strings.
+
+501
+00:19:29,644 --> 00:19:30,334
+What do we do now?
+
+502
+00:19:30,574 --> 00:19:33,154
+Okay, we need to define two messages.
+
+503
+00:19:33,574 --> 00:19:37,114
+Okay, two dictionaries and add them both to the message history.
+
+504
+00:19:38,614 --> 00:19:40,384
+How do we make this definition or what
+
+505
+00:19:40,504 --> 00:19:42,184
+told you that this is what we needed to do?
+
+506
+00:19:42,394 --> 00:19:43,744
+This link can visit it.
+
+507
+00:19:44,114 --> 00:19:45,644
+I said here we have to first add this message
+
+508
+00:19:45,644 --> 00:19:47,954
+before any two response as mentioned in this source.
+
+509
+00:19:47,954 --> 00:19:50,564
+You can read about that to computational of opening eye.
+
+510
+00:19:51,044 --> 00:19:52,574
+So basically this is what we're doing.
+
+511
+00:19:53,264 --> 00:19:55,064
+We are adding some, an internal message.
+
+512
+00:19:55,634 --> 00:19:57,644
+There's a message in the history that we internally
+
+513
+00:19:57,644 --> 00:20:00,514
+add ourselves with a role, the role of assistant.
+
+514
+00:20:00,724 --> 00:20:01,834
+We must do it like that.
+
+515
+00:20:01,924 --> 00:20:02,764
+Read the documentation.
+
+516
+00:20:02,974 --> 00:20:03,364
+We must.
+
+517
+00:20:03,424 --> 00:20:05,314
+This is, we have to hardcode this like
+
+518
+00:20:05,314 --> 00:20:07,454
+that with the content as an empty thing.
+
+519
+00:20:07,484 --> 00:20:10,674
+We also have to hardcode this and with tool call, with a
+
+520
+00:20:10,674 --> 00:20:14,334
+tool called a key, which expects a list of dictionaries.
+
+521
+00:20:14,784 --> 00:20:15,054
+Okay.
+
+522
+00:20:15,444 --> 00:20:17,309
+And which will be a single dictionary
+
+523
+00:20:17,729 --> 00:20:20,209
+with the type and ID and function keys.
+
+524
+00:20:20,719 --> 00:20:21,619
+All of this is hard.
+
+525
+00:20:21,739 --> 00:20:23,544
+We have to resist this structure.
+
+526
+00:20:23,754 --> 00:20:26,604
+See here, to understand, I just took it from the documentation.
+
+527
+00:20:26,604 --> 00:20:28,644
+We have to make it like that after we do that.
+
+528
+00:20:29,814 --> 00:20:31,704
+We say that the type of what you're about to
+
+529
+00:20:31,704 --> 00:20:34,194
+get is a function with the idea of the tool id.
+
+530
+00:20:34,344 --> 00:20:36,294
+The tool ID was achieved earlier in the code.
+
+531
+00:20:36,324 --> 00:20:37,494
+You can trace it yourself.
+
+532
+00:20:37,494 --> 00:20:38,934
+It's easy to be traced, to be honest.
+
+533
+00:20:39,324 --> 00:20:41,784
+And then the function from the tool definition.
+
+534
+00:20:42,024 --> 00:20:42,324
+Okay.
+
+535
+00:20:42,484 --> 00:20:44,344
+This definition is another definition I
+
+536
+00:20:44,344 --> 00:20:46,474
+quickly made here with name and arguments.
+
+537
+00:20:46,534 --> 00:20:48,604
+The name is a tool name, which is search for on our case
+
+538
+00:20:48,724 --> 00:20:52,364
+and arguments is the two orgs, which is the which is.
+
+539
+00:20:52,754 --> 00:20:54,584
+The string itself.
+
+540
+00:20:54,584 --> 00:20:55,964
+So this expects a string.
+
+541
+00:20:56,024 --> 00:20:58,694
+So this should be a string like this, like query.
+
+542
+00:21:00,464 --> 00:21:00,914
+Okay.
+
+543
+00:21:01,334 --> 00:21:02,414
+And then 2.2.
+
+544
+00:21:03,194 --> 00:21:03,404
+Okay.
+
+545
+00:21:04,334 --> 00:21:04,574
+Two.
+
+546
+00:21:04,574 --> 00:21:05,745
+Two dot two.
+
+547
+00:21:05,745 --> 00:21:06,165
+Column two.
+
+548
+00:21:06,945 --> 00:21:07,995
+We have to pass it as a string.
+
+549
+00:21:08,084 --> 00:21:08,804
+This is a string.
+
+550
+00:21:09,615 --> 00:21:10,425
+This is a string.
+
+551
+00:21:11,475 --> 00:21:11,804
+Okay.
+
+552
+00:21:12,074 --> 00:21:13,455
+And then we pass that here.
+
+553
+00:21:13,995 --> 00:21:14,175
+Okay.
+
+554
+00:21:14,175 --> 00:21:17,445
+And you'll see, because the two, two, this is
+
+555
+00:21:17,445 --> 00:21:19,024
+a thing that's actually generated by the tool.
+
+556
+00:21:19,445 --> 00:21:19,685
+Okay.
+
+557
+00:21:20,204 --> 00:21:20,534
+Yeah.
+
+558
+00:21:20,594 --> 00:21:21,344
+So we put that here.
+
+559
+00:21:21,434 --> 00:21:23,174
+All of this, we have to do it like that.
+
+560
+00:21:23,354 --> 00:21:23,684
+Okay.
+
+561
+00:21:23,714 --> 00:21:24,794
+Based on the link here.
+
+562
+00:21:25,244 --> 00:21:27,134
+So once we set up this internal message, using
+
+563
+00:21:27,134 --> 00:21:29,114
+this structure, we add it to the message history.
+
+564
+00:21:29,504 --> 00:21:29,834
+Okay?
+
+565
+00:21:30,494 --> 00:21:32,714
+Again, let me make you understand why
+
+566
+00:21:32,714 --> 00:21:33,974
+we are doing what we're doing right now.
+
+567
+00:21:34,334 --> 00:21:34,514
+Okay.
+
+568
+00:21:35,054 --> 00:21:37,395
+Just to, so we are on the same page.
+
+569
+00:21:37,814 --> 00:21:38,894
+You have the message yesterday.
+
+570
+00:21:39,584 --> 00:21:39,854
+Okay.
+
+571
+00:21:40,274 --> 00:21:44,145
+Sorry, my amazing drawings, which is just a list of dictionaries,
+
+572
+00:21:44,145 --> 00:21:46,365
+first dictionary, second dictionary, and all of that.
+
+573
+00:21:46,514 --> 00:21:49,064
+First dictionary has a user, or actually
+
+574
+00:21:49,064 --> 00:21:50,655
+the first dictionary is a system message.
+
+575
+00:21:50,655 --> 00:21:52,245
+You remember system when we said that
+
+576
+00:21:52,245 --> 00:21:53,745
+this is, hello, ansari, et cetera.
+
+577
+00:21:53,745 --> 00:21:55,034
+This is a personality of, Ansari, this
+
+578
+00:21:55,034 --> 00:21:56,325
+is always has to be the first message.
+
+579
+00:21:56,564 --> 00:21:58,725
+And then we have what do we have?
+
+580
+00:21:58,784 --> 00:22:02,685
+We have a user message with a message with a role user.
+
+581
+00:22:02,865 --> 00:22:04,665
+It says, who are you, for example?
+
+582
+00:22:05,025 --> 00:22:07,035
+And then we have a message saying from
+
+583
+00:22:07,085 --> 00:22:09,725
+assistant saying, Ansari, and it's response.
+
+584
+00:22:10,025 --> 00:22:10,295
+Okay.
+
+585
+00:22:10,595 --> 00:22:12,795
+And then we have this chat like that.
+
+586
+00:22:12,885 --> 00:22:13,185
+Okay.
+
+587
+00:22:13,315 --> 00:22:14,125
+This is a history.
+
+588
+00:22:14,335 --> 00:22:17,335
+So now we have, now we want to add,
+
+589
+00:22:17,915 --> 00:22:19,685
+a new entity to our conversation.
+
+590
+00:22:19,775 --> 00:22:21,840
+So we have the system, which is just a single message,
+
+591
+00:22:21,930 --> 00:22:24,030
+and then we have two entities, the user and the assistant.
+
+592
+00:22:24,090 --> 00:22:25,830
+We want to add a third entity right now called the tool.
+
+593
+00:22:26,335 --> 00:22:30,220
+Okay, so wanted to get the tool's, opinion, the tools talk to us.
+
+594
+00:22:30,430 --> 00:22:30,850
+Okay.
+
+595
+00:22:31,070 --> 00:22:34,190
+And we add that talking to the history that we have connected,
+
+596
+00:22:34,190 --> 00:22:37,190
+the chat that we currently have, add tool to the chat.
+
+597
+00:22:37,460 --> 00:22:41,290
+And to add it, the tool talks in a certain way, like the tool
+
+598
+00:22:41,390 --> 00:22:43,880
+has to be written in this message history in a certain way.
+
+599
+00:22:43,880 --> 00:22:46,670
+Or, let me rephrase this sentence, the message history.
+
+600
+00:22:47,930 --> 00:22:47,940
+Okay.
+
+601
+00:22:48,910 --> 00:22:53,410
+Or the LLM understands this message history and understands
+
+602
+00:22:53,750 --> 00:22:56,750
+that the way that the tool talks, if it talks in the
+
+603
+00:22:56,750 --> 00:22:59,025
+format that I'm explaining right now, what is the format?
+
+604
+00:22:59,635 --> 00:23:00,415
+The format is the following.
+
+605
+00:23:00,415 --> 00:23:03,925
+The tool has to first put an internal message, okay.
+
+606
+00:23:04,315 --> 00:23:05,845
+With the role of assistant.
+
+607
+00:23:06,625 --> 00:23:06,985
+Okay.
+
+608
+00:23:07,600 --> 00:23:08,680
+And an empty string.
+
+609
+00:23:10,000 --> 00:23:10,240
+Okay.
+
+610
+00:23:10,240 --> 00:23:11,500
+This is what I explained right now.
+
+611
+00:23:11,710 --> 00:23:11,980
+Okay.
+
+612
+00:23:12,160 --> 00:23:12,860
+This is this part.
+
+613
+00:23:13,300 --> 00:23:13,510
+Okay.
+
+614
+00:23:13,840 --> 00:23:17,380
+So the, any tool that responds to us, any tool that responds to
+
+615
+00:23:17,380 --> 00:23:20,440
+us has to respond to us, has to add a message in this format.
+
+616
+00:23:20,470 --> 00:23:20,800
+Okay.
+
+617
+00:23:21,260 --> 00:23:22,160
+This internal message.
+
+618
+00:23:22,760 --> 00:23:25,730
+And then it has to append the actual, like the
+
+619
+00:23:25,730 --> 00:23:28,990
+actual tool response, which is a role tool.
+
+620
+00:23:29,410 --> 00:23:29,800
+Okay.
+
+621
+00:23:30,400 --> 00:23:31,750
+I'll show that in a second.
+
+622
+00:23:32,020 --> 00:23:34,500
+And the actual arguments that, that
+
+623
+00:23:34,500 --> 00:23:37,570
+it said, okay the query to column two.
+
+624
+00:23:37,660 --> 00:23:40,640
+So if we see that horrible drawing here, you will see this part
+
+625
+00:23:40,660 --> 00:23:44,200
+of the horrible drawing as the internal messages I explained.
+
+626
+00:23:44,860 --> 00:23:48,890
+Okay, this part, and you will see the other thing that we
+
+627
+00:23:48,890 --> 00:23:51,435
+appended message needed from dual, which is this horrible part.
+
+628
+00:23:52,265 --> 00:23:53,825
+Horribly drawing  part.
+
+629
+00:23:54,035 --> 00:23:56,405
+Okay, so what is this message needed from tool?
+
+630
+00:23:56,735 --> 00:23:59,975
+It has a following format, it role, tool, sorry.
+
+631
+00:24:00,325 --> 00:24:01,255
+And then the content.
+
+632
+00:24:01,405 --> 00:24:03,415
+And here we put in the content something we put
+
+633
+00:24:03,415 --> 00:24:05,875
+the results string, which is the results of the
+
+634
+00:24:05,875 --> 00:24:08,285
+function, the results of the actual tool that we.
+
+635
+00:24:08,750 --> 00:24:09,830
+We called in the backend.
+
+636
+00:24:10,250 --> 00:24:10,610
+Okay.
+
+637
+00:24:10,910 --> 00:24:12,420
+Which is the list of ayahs.
+
+638
+00:24:12,860 --> 00:24:13,190
+Okay.
+
+639
+00:24:13,370 --> 00:24:13,610
+Sorry.
+
+640
+00:24:13,840 --> 00:24:16,490
+The list of ayahs that we have that I just show you a
+
+641
+00:24:16,670 --> 00:24:19,090
+number and there's English and Arabic list of ayahs.
+
+642
+00:24:19,250 --> 00:24:19,820
+List of strings.
+
+643
+00:24:19,920 --> 00:24:20,130
+Okay.
+
+644
+00:24:20,310 --> 00:24:22,050
+And then the two call ID that we
+
+645
+00:24:22,050 --> 00:24:23,460
+put here, we put this here as well.
+
+646
+00:24:23,850 --> 00:24:28,800
+So again, in the internal message, what do you have from the ai?
+
+647
+00:24:28,930 --> 00:24:30,430
+From the tool, we have its arguments.
+
+648
+00:24:30,430 --> 00:24:32,290
+The arguments that has query.
+
+649
+00:24:33,400 --> 00:24:35,440
+And two column two.
+
+650
+00:24:35,740 --> 00:24:36,010
+Okay.
+
+651
+00:24:36,500 --> 00:24:41,390
+And from this portfolio we have our backend codes response.
+
+652
+00:24:42,020 --> 00:24:42,380
+Okay.
+
+653
+00:24:42,620 --> 00:24:48,165
+We have that here, which is the list of i one as a string.
+
+654
+00:24:48,165 --> 00:24:49,250
+I had two and all of that.
+
+655
+00:24:50,115 --> 00:24:52,035
+Okay, so I actually made a mistake when I said
+
+656
+00:24:52,035 --> 00:24:54,255
+a couple of sentences ago that this has to call
+
+657
+00:24:54,255 --> 00:24:56,455
+into the, it doesn't have it has this formatting.
+
+658
+00:24:56,815 --> 00:24:57,115
+Okay?
+
+659
+00:24:57,595 --> 00:25:00,820
+So when a tool adds a message to the conversation, it has to
+
+660
+00:25:00,820 --> 00:25:04,840
+add it in this format, in this walkie and weird format, okay?
+
+661
+00:25:04,870 --> 00:25:06,680
+This two messages like this with the
+
+662
+00:25:06,680 --> 00:25:08,300
+keys that I just showed you, okay?
+
+663
+00:25:08,360 --> 00:25:10,130
+But when an assistant, just a normal assistant, a
+
+664
+00:25:10,130 --> 00:25:13,250
+normal lm. Return words in a, in just a free talk.
+
+665
+00:25:13,520 --> 00:25:16,520
+It just adds a message like that the assistant rule and
+
+666
+00:25:16,520 --> 00:25:19,290
+saying, hello, Ansari, I can help you with with et cetera.
+
+667
+00:25:19,590 --> 00:25:21,750
+And then when a user talks to the chat history,
+
+668
+00:25:21,930 --> 00:25:24,020
+they can just add a user rule with this message.
+
+669
+00:25:24,020 --> 00:25:25,400
+Like this is simple and this is
+
+670
+00:25:25,400 --> 00:25:26,720
+simple, but the tool is complicated.
+
+671
+00:25:26,720 --> 00:25:27,290
+I don't know why.
+
+672
+00:25:27,900 --> 00:25:31,260
+The tool has to write in this format in a message history.
+
+673
+00:25:31,470 --> 00:25:32,640
+So this is a message history.
+
+674
+00:25:33,300 --> 00:25:35,830
+The tool has to write in it in this way.
+
+675
+00:25:36,370 --> 00:25:36,670
+Okay.
+
+676
+00:25:37,085 --> 00:25:38,495
+It's just two dictionaries.
+
+677
+00:25:38,685 --> 00:25:40,575
+So all again, all of that's being done.
+
+678
+00:25:41,085 --> 00:25:43,775
+Just to make the assistant in the future.
+
+679
+00:25:43,835 --> 00:25:46,355
+So now this is it, this is the response, but
+
+680
+00:25:46,355 --> 00:25:48,065
+that response, that list of, is we don't just
+
+681
+00:25:48,065 --> 00:25:50,345
+wanna show the user a list of ayahs like that.
+
+682
+00:25:51,015 --> 00:25:54,785
+We want to to make the model understand this list of a, as
+
+683
+00:25:54,785 --> 00:25:57,365
+a, like a background for it, as like the context for it.
+
+684
+00:25:57,635 --> 00:25:58,145
+And then.
+
+685
+00:25:58,595 --> 00:26:02,105
+Paraphrase what it understands from these is, and and like
+
+686
+00:26:02,315 --> 00:26:05,255
+these is names and et cetera, and mention them to the user while
+
+687
+00:26:05,405 --> 00:26:08,975
+adding the, its AI touch not destination, but explanation for it.
+
+688
+00:26:09,185 --> 00:26:10,625
+If we, if the user wants to know
+
+689
+00:26:10,775 --> 00:26:12,995
+is about patience and perseverance.
+
+690
+00:26:13,025 --> 00:26:14,225
+We don't wanna output to the user.
+
+691
+00:26:15,240 --> 00:26:17,220
+I two, colon two I two, colon five.
+
+692
+00:26:17,220 --> 00:26:17,880
+We don't wanna do that.
+
+693
+00:26:18,000 --> 00:26:19,840
+We wanna say, okay here there are
+
+694
+00:26:19,840 --> 00:26:21,710
+a couple of ayahs about patients.
+
+695
+00:26:21,770 --> 00:26:25,730
+One of them is I two, colon two, which is, and then says it.
+
+696
+00:26:25,970 --> 00:26:28,560
+And then another ayah is two point two
+
+697
+00:26:28,560 --> 00:26:30,960
+column four, for example, and then states.
+
+698
+00:26:31,110 --> 00:26:35,070
+That's the ai like flavor flair, not, I'm not
+
+699
+00:26:35,070 --> 00:26:37,050
+talking about hallucination, is just paraphrasing.
+
+700
+00:26:37,050 --> 00:26:37,770
+Just rewording.
+
+701
+00:26:38,135 --> 00:26:38,795
+What's being said?
+
+702
+00:26:39,095 --> 00:26:39,425
+Okay.
+
+703
+00:26:39,575 --> 00:26:43,645
+So we wanna make the assistant understand this tool's
+
+704
+00:26:43,645 --> 00:26:45,935
+response and to make the assistant like to make the
+
+705
+00:26:45,935 --> 00:26:49,405
+assistant later here to make us be able to create a message.
+
+706
+00:26:49,435 --> 00:26:51,615
+His here with the role of assistant.
+
+707
+00:26:52,440 --> 00:26:55,990
+And it's final paraphrased response to the user.
+
+708
+00:26:56,200 --> 00:26:58,780
+If in order for us to do that, in order for LLM to under
+
+709
+00:26:59,050 --> 00:27:02,510
+to do this we have to pass this message history and
+
+710
+00:27:02,510 --> 00:27:04,430
+this message history will now include the tool response.
+
+711
+00:27:04,550 --> 00:27:07,070
+And so for the, in order for the LLM to understand this
+
+712
+00:27:07,070 --> 00:27:09,980
+response from the tool, it has to be for formatted in this way.
+
+713
+00:27:10,310 --> 00:27:10,610
+Okay?
+
+714
+00:27:11,030 --> 00:27:13,370
+So this is a summary of why we are doing it like that in
+
+715
+00:27:13,370 --> 00:27:18,020
+the first place in order for this to understand that, okay?
+
+716
+00:27:18,260 --> 00:27:19,520
+I would like to understand that.
+
+717
+00:27:20,030 --> 00:27:20,320
+Okay.
+
+718
+00:27:21,425 --> 00:27:22,945
+In order from the assistant to understand the
+
+719
+00:27:22,945 --> 00:27:24,355
+tool has to communicate with it like that.
+
+720
+00:27:24,790 --> 00:27:27,205
+Okay, this is a summary of everything.
+
+721
+00:27:27,235 --> 00:27:29,905
+Hopefully I explained it relatively
+
+722
+00:27:29,905 --> 00:27:31,435
+well, except that for the drawing part.
+
+723
+00:27:31,555 --> 00:27:32,155
+Sorry about that.
+
+724
+00:27:32,515 --> 00:27:34,605
+And yeah, this is why we're doing this in the first place.
+
+725
+00:27:35,055 --> 00:27:37,065
+So we appended the message native from tool.
+
+726
+00:27:37,065 --> 00:27:38,505
+We appended the internal message.
+
+727
+00:27:38,745 --> 00:27:39,825
+And so we returned them.
+
+728
+00:27:39,915 --> 00:27:42,165
+So we returned that message native from tool, and we return the
+
+729
+00:27:42,165 --> 00:27:46,005
+internal message and we return the actual the actual content.
+
+730
+00:27:46,005 --> 00:27:48,105
+The string here, the content is the resource
+
+731
+00:27:48,105 --> 00:27:50,275
+string and this is the, list of ayahs.
+
+732
+00:27:50,435 --> 00:27:50,615
+Okay.
+
+733
+00:27:50,615 --> 00:27:53,465
+List of strings of ayahs, but but made as a string.
+
+734
+00:27:53,865 --> 00:27:57,215
+We just joined the results and we say an A two or
+
+735
+00:27:57,215 --> 00:27:59,765
+column two, and then we say another relevant citation.
+
+736
+00:28:00,095 --> 00:28:03,155
+And then a to convert whatever all that is just a single string.
+
+737
+00:28:03,485 --> 00:28:06,065
+We put that single string in ing and pass it here.
+
+738
+00:28:06,215 --> 00:28:08,375
+And all of that's now added as a context to
+
+739
+00:28:08,375 --> 00:28:10,545
+the LLM when it answers the user question.
+
+740
+00:28:10,755 --> 00:28:12,045
+And so how does it do that?
+
+741
+00:28:12,555 --> 00:28:13,455
+When does it do that?
+
+742
+00:28:13,605 --> 00:28:16,435
+Does that in the following, after process, two calls finish.
+
+743
+00:28:16,765 --> 00:28:19,915
+We now have set the, its responses in the message
+
+744
+00:28:19,915 --> 00:28:21,885
+history, the message history attribute of, Ansari.
+
+745
+00:28:22,135 --> 00:28:23,535
+And and so we continue here.
+
+746
+00:28:23,535 --> 00:28:25,815
+It's logged in database, and then this function ends.
+
+747
+00:28:25,815 --> 00:28:29,835
+When this function ends, when this function ends, we go back where
+
+748
+00:28:30,465 --> 00:28:34,275
+we go back here, and then we go back here in the Postma history.
+
+749
+00:28:34,515 --> 00:28:36,195
+We finish this loop, okay?
+
+750
+00:28:36,195 --> 00:28:38,055
+Or we finish this part of the loop and then we come
+
+751
+00:28:38,055 --> 00:28:40,665
+back to the wild while the role is not assistant.
+
+752
+00:28:41,155 --> 00:28:43,405
+All the two call ID is not in the last message.
+
+753
+00:28:43,705 --> 00:28:44,725
+This is the case.
+
+754
+00:28:44,785 --> 00:28:47,125
+This is actually the case because the last message
+
+755
+00:28:47,175 --> 00:28:49,965
+that's currently sent here at this point is this one.
+
+756
+00:28:49,995 --> 00:28:52,575
+Is this one, okay.
+
+757
+00:28:52,905 --> 00:28:54,225
+This is the last message that's currently in the
+
+758
+00:28:54,225 --> 00:28:56,925
+history and so this is not an assistant message.
+
+759
+00:28:57,135 --> 00:28:58,815
+So we enter here one last time.
+
+760
+00:28:59,085 --> 00:29:01,305
+If I recall correctly, we enter here one less time
+
+761
+00:29:01,635 --> 00:29:05,755
+and we say, okay, please take the message history.
+
+762
+00:29:06,110 --> 00:29:08,840
+Internally, it'll take it in here and use it one last
+
+763
+00:29:08,840 --> 00:29:11,690
+time to process the to process it, to generate an answer.
+
+764
+00:29:11,990 --> 00:29:15,920
+So now it'll take all of this part okay.
+
+765
+00:29:15,920 --> 00:29:16,730
+In the message history.
+
+766
+00:29:17,540 --> 00:29:21,020
+And the model will now idu when we are calling the l
+
+767
+00:29:21,230 --> 00:29:24,750
+lighter lamb completion this call, it'll now because
+
+768
+00:29:24,750 --> 00:29:26,910
+we passed in auto, it was in auto here, so now it'll
+
+769
+00:29:26,910 --> 00:29:29,520
+automatically choose that, okay, based on this context.
+
+770
+00:29:29,520 --> 00:29:30,630
+Now, I don't need to answer with the
+
+771
+00:29:30,630 --> 00:29:31,770
+tool again, I'll answer with the.
+
+772
+00:29:32,190 --> 00:29:33,120
+With the model itself.
+
+773
+00:29:33,390 --> 00:29:36,150
+And so I will not use the tool and just use words.
+
+774
+00:29:36,300 --> 00:29:37,680
+And so it'll use words to need this
+
+775
+00:29:37,680 --> 00:29:40,920
+answer here based on this context here.
+
+776
+00:29:41,190 --> 00:29:42,930
+And then that answer will make the
+
+777
+00:29:42,930 --> 00:29:44,220
+last message in the history assistant.
+
+778
+00:29:44,460 --> 00:29:46,230
+And so when we return back to that loop
+
+779
+00:29:47,225 --> 00:29:48,865
+it'll have the final rule assistance.
+
+780
+00:29:48,865 --> 00:29:51,665
+So this will be false like all these will be false, and the one
+
+781
+00:29:51,665 --> 00:29:54,665
+will exit, and that will be the message returned to the user.
+
+782
+00:29:56,015 --> 00:29:56,615
+And that is it.
+
+783
+00:29:56,765 --> 00:29:59,435
+That is literally the, the what's happening
+
+784
+00:29:59,435 --> 00:30:01,565
+here, and again, it'll be technically returned to
+
+785
+00:30:01,565 --> 00:30:03,635
+the user using the yield because we're leading.
+
+786
+00:30:03,635 --> 00:30:06,475
+So when we're leading this yield will temporary hold
+
+787
+00:30:06,745 --> 00:30:11,755
+the function here in order to return bit by bit in the
+
+788
+00:30:11,755 --> 00:30:13,975
+replace message history here, which is mentioned in
+
+789
+00:30:13,975 --> 00:30:17,095
+the complete in many API, which I explained before.
+
+790
+00:30:17,575 --> 00:30:18,865
+I think that was the most complicated
+
+791
+00:30:19,075 --> 00:30:20,425
+part of the entire code base.
+
+792
+00:30:20,425 --> 00:30:21,735
+But, hopefully you explained it now.
+
+793
+00:30:21,735 --> 00:30:23,455
+This is a, this was a tricky part.
+
+794
+00:30:23,475 --> 00:30:26,085
+Anything else should be easier and hopefully now we have
+
+795
+00:30:26,085 --> 00:30:29,410
+a, you have a understanding of, of what's happening.
+

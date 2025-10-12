@@ -1,0 +1,47 @@
+A deep dive into the logic and structure of Python "main_*" and "*_presenter" files, exploring input/output handling, generators, and the Typer library.
+
+IMPORTANT NOTE: Thoroughly check the chapters below; they usually contain the most up-to-date information (as some info in the video itself may get outdated).
+
+▬▬ ⏱️ Timestamps  ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+00:00 Understanding the "main_*" Logic
+00:21 "main" Stdio File
+01:22 Presenting with the Presenter Class
+02:05 Processing User Input
+03:48 Understanding Generators in Python
+05:51 Implementing the Typewriter Effect
+08:47 File and API Presenters
+13:51 Using the Typer Library
+16:46 Outro
+
+▬▬ ℹ️ Details  ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+Assalamualaikum and welcome to our next video in the Ansari backend V2.0 series! In this session, we’ll break down the core logic behind the "main" and "presenter" files, guiding you through how input and output are managed in this Python project.
+
+What you’ll learn in this video:
+
+• The purpose and structure of "main" and "presenter" files in backend development
+• How input/output flows through the terminal, files, and APIs
+• The use of generators and streaming for efficient data handling
+• Implementing the Typer library for building flexible command-line interfaces
+• How our entry points and presenters are organized
+
+If you have any questions, feedback, or suggestions for future videos, leave a comment below! :] 🙌
+
+▬▬ 🔗 Relevant Links  ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+• Ansari Backend V2.0 Repo (till the time of recording): https://github.com/ansari-project/ansari-backend/tree/6a88b5035463eee08cf863575b208f7248524a18
+• Ansari Chat: https://ansari.chat/
+• Ansari WhatsApp: https://wa.me/16506563971
+• Ansari Android App: https://play.google.com/store/apps/details?id=chat.ansari.app&hl=en
+• Ansari iOS App: https://apps.apple.com/us/app/ansari-chat/id6743072108
+• Typer library: https://typer.tiangolo.com/tutorial/
+
+▬▬ 🗣️ Content Creation Details ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+• This video is part of the Ansari V2.0 Backend series: https://www.youtube.com/playlist?list=PLNVULOJciLkTEbs8t4bEEIgEbxIQnK9VE
+• Details and assets related to the creation of this series: https://github.com/OdyAsh/ansari-docs/tree/main/docs/recordings/ansari_backend_v_2_0
+
+▬▬ 🤝 Connect with us  ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+• Email: feedback@ansari.chat
